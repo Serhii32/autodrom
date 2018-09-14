@@ -27,29 +27,31 @@
 				<button class="btn btn-2" type="submit">SUBSCRIBE</button>
 			</form>
 		</div><!-- sidebar-section newsletter-area --> --}}
+
 		<div class="sidebar-section category-area">
 			<h4 class="title"><b class="light-color">Categories</b></h4>
 			<a class="category" href="#">
-				<img src="images/category-1-400x150.jpg" alt="Category Image">
+				<img src="{{asset('images/category-1-400x150.jpg')}}" alt="Category Image">
 				<h6 class="name">TRAVEL</h6>
 			</a>
 			<a class="category" href="#">
-				<img src="images/category-2-400x150.jpg" alt="Category Image">
+				<img src="{{asset('images/category-2-400x150.jpg')}}" alt="Category Image">
 				<h6 class="name">FASHION</h6>
 			</a>
 			<a class="category" href="#">
-				<img src="images/category-3-400x150.jpg" alt="Category Image">
+				<img src="{{asset('images/category-3-400x150.jpg')}}" alt="Category Image">
 				<h6 class="name">LIFESTYLE</h6>
 			</a>
 			<a class="category" href="#">
-				<img src="images/category-4-400x150.jpg" alt="Category Image">
+				<img src="{{asset('images/category-4-400x150.jpg')}}" alt="Category Image">
 				<h6 class="name">DESIGN</h6>
 			</a>
 		</div><!-- sidebar-section category-area -->
+
 		<div class="sidebar-section latest-post-area">
 			<h4 class="title"><b class="light-color">Latest Posts</b></h4>
 			<div class="latest-post" href="#">
-				<div class="l-post-image"><img src="images/recent-post-1-150x200.jpg" alt="Category Image"></div>
+				<div class="l-post-image"><img src="{{asset('images/recent-post-1-150x200.jpg')}}" alt="Category Image"></div>
 				<div class="post-info">
 					<a class="btn category-btn" href="#">TRAVEL</a>
 					<h5><a href="#"><b class="light-color">One more night in the clubs</b></a></h5>
@@ -57,7 +59,7 @@
 				</div>
 			</div>
 			<div class="latest-post" href="#">
-				<div class="l-post-image"><img src="images/recent-post-2-150x200.jpg" alt="Category Image"></div>
+				<div class="l-post-image"><img src="{{asset('images/recent-post-2-150x200.jpg')}}" alt="Category Image"></div>
 				<div class="post-info">
 					<a class="btn category-btn" href="#">TRAVEL</a>
 					<h5><a href="#"><b class="light-color">Travel lights in winter</b></a></h5>
@@ -65,7 +67,7 @@
 				</div>
 			</div>
 			<div class="latest-post" href="#">
-				<div class="l-post-image"><img src="images/recent-post-3-150x200.jpg" alt="Category Image"></div>
+				<div class="l-post-image"><img src="{{asset('images/recent-post-3-150x200.jpg')}}" alt="Category Image"></div>
 				<div class="post-info">
 					<a class="btn category-btn" href="#">TRAVEL</a>
 					<h5><a href="#"><b class="light-color">How to travel with no money</b></a></h5>
@@ -73,7 +75,7 @@
 				</div>
 			</div>
 			<div class="latest-post" href="#">
-				<div class="l-post-image"><img src="images/recent-post-4-150x200.jpg" alt="Category Image"></div>
+				<div class="l-post-image"><img src="{{asset('images/recent-post-4-150x200.jpg')}}" alt="Category Image"></div>
 				<div class="post-info">
 					<a class="btn category-btn" href="#">TRAVEL</a>
 					<h5><a href="#"><b class="light-color">Smile 10 times a day</b></a></h5>
@@ -81,14 +83,16 @@
 				</div>
 			</div>
 		</div><!-- sidebar-section latest-post-area -->
-		<div class="sidebar-section advertisement-area">
+
+		{{-- <div class="sidebar-section advertisement-area">
 			<h4 class="title"><b class="light-color">Advertisement</b></h4>
 			<a class="advertisement-img" href="#">
-				<img src="images/advertise-1-400x500.jpg" alt="Advertisement Image">
+				<img src="{{asset('images/advertise-1-400x500.jpg" alt="Advertisement Image">
 				<h6 class="btn btn-2 discover-btn">DISCOVER</h6>
 			</a>
-		</div><!-- sidebar-section advertisement-area -->
-		<div class="sidebar-section instagram-area">
+		</div><!-- sidebar-section advertisement-area --> --}}
+		
+		{{-- <div class="sidebar-section instagram-area">
 			<h4 class="title"><b class="light-color">Instagram</b></h4>
 			<ul class="instagram-img">
 				<li><a href="#"><img src="images/instragram-side-1-150x150.jpg" alt="Instagram Image"></a></li>
@@ -111,6 +115,6 @@
 				<li><a class="btn" href="#">photography</a></li>
 				<li><a class="btn" href="#">adventure</a></li>
 			</ul>
-		</div><!-- sidebar-section tags-area -->
+		</div><!-- sidebar-section tags-area --> --}}
 	</div><!-- about-author -->
 </div><!-- col-lg-4 -->

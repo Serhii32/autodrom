@@ -15,15 +15,15 @@
 
 	<!-- Stylesheets -->
 
-	<link href="common-css/bootstrap.css" rel="stylesheet">
+	<link href="{{asset('common-css/bootstrap.css')}}" rel="stylesheet">
 
-	<link href="common-css/ionicons.css" rel="stylesheet">
+	<link href="{{asset('common-css/ionicons.css')}}" rel="stylesheet">
 
-	<link href="common-css/layerslider.css" rel="stylesheet">
+	<link href="{{asset('common-css/layerslider.css')}}" rel="stylesheet">
 
-	<link href="01-homepage/css/styles.css" rel="stylesheet">
+	<link href="{{asset('01-homepage/css/styles.css')}}" rel="stylesheet">
 
-	<link href="01-homepage/css/responsive.css" rel="stylesheet">
+	<link href="{{asset('01-homepage/css/responsive.css')}}" rel="stylesheet">
 
 </head>
 <body>
@@ -32,12 +32,12 @@
 
 		<div class="top-menu">
 
-			<ul class="left-area welcome-area">
+			<ul class="right-area">
 				<li><a href="tel:+380672690360">(067)269-03-60</a> &nbsp; <a href="tel:+380960788080">(096)078-80-80</a> &nbsp; <a href="tel:+380930788080">(093)078-80-80</a></li>
 			</ul><!-- left-area -->
 
 
-			<div class="right-area">
+			<div class="left-area">
 
 				<div class="src-area">
 					<form action="post">
@@ -46,24 +46,19 @@
 					</form>
 				</div><!-- src-area -->
 
-				<ul class="social-icons">
-					<li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
-					<li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
-					<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-					<li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
-					<li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
-				</ul><!-- right-area -->
-
 			</div><!-- right-area -->
 
 		</div><!-- top-menu -->
 
 		<div class="middle-menu center-text row">
-			<h3 class="col-md-5 my-auto">Удаление ДПФ фильтра</h3>
-				<a class="col-md-2" href="{{route('page.index')}}" class="logo">
-					<img style="max-width: 150px;" src="{{asset('img/site/common/ChipTuning.jpg')}}" alt="Chip Tuning">
-				</a>
-			<h3 class="col-md-5 my-auto">Чип тюнинг вашего авто</h3>
+			<a class="col-6 col-md-2" href="{{route('page.index')}}" class="logo">
+				<img style="max-width: 120px;" src="{{asset('img/site/common/ChipTuning.jpg')}}" alt="Chip Tuning">
+			</a>
+			<h3 class="col-6 col-md-4 my-auto" style="font-size: 1.2rem;">Удаление ДПФ фильтра</h3>
+			<h3 class="col-6 col-md-4 my-auto" style="font-size: 1.2rem;">Чип тюнинг вашего авто</h3>
+			<a class="col-6 col-md-2" href="{{route('page.index')}}" class="logo">
+				<img style="max-width: 120px;" src="{{asset('img/site/common/BoschService.jpg')}}" alt="Bosch Service">
+			</a>
 		</div>
 
 		<div class="bottom-area">
@@ -71,25 +66,28 @@
 			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
 			<ul class="main-menu visible-on-click" id="main-menu">
-				<li {{-- class="drop-down" --}}><a href="#!">ПРОГРАММИРОВАНИЕ ЕБУ{{-- <i class="ion-ios-arrow-down"></i> --}}</a>
+				<li class="drop-down"><a href="#!">УСЛУГИ<i class="ion-ios-arrow-down"></i></a>
 
-					{{-- <ul class="drop-down-menu">
-						<li><a href="#">FEATURED</a></li>
-						<li><a href="#">ABOUT</a></li>
-						<li class="drop-down"><a href="#!">CATEGORIES<i class="ion-ios-arrow-right"></i></a>
-							<ul class="drop-down-menu drop-down-inner">
+					<ul class="drop-down-menu">
+						<li><a href="#">ПРОГРАММИРОВАНИЕ ЕБУ</a></li>
+						<li><a href="#">ПРОГРАММИРОВАНИЕ</a></li>
+						<li {{-- class="drop-down" --}}><a href="#!">УДАЛЕНИЕ САЖЕВОГО ФИЛЬТРА DPF/FOP{{-- <i class="ion-ios-arrow-right"></i> --}}</a>
+							{{-- <ul class="drop-down-menu drop-down-inner">
 								<li><a href="#">FEATURED</a></li>
 								<li><a href="#">ABOUT</a></li>
 								<li><a href="#">CATEGORIES</a></li>
-							</ul>
+							</ul> --}}
 						</li>
-					</ul> --}}
+						<li><a href="#">ОТКЛЮЧЕНИЕ СИСТЕМЫ РЕЦИРКУЛЯЦИИ ВЫХЛОПНЫХ ГАЗОВ (КЛАПАН EGR)</a></li>
+						<li><a href="#">УВЕЛИЧЕНИЕ МОЩНОСТИ</a></li>
+						<li><a href="#">ОТКЛЮЧЕНИЕ КАТАЛИЗАТОРА</a></li>
+						<li><a href="#">ОТКЛЮЧЕНИЕ СИСТЕМЫ ADBLUE</a></li>
+					</ul>
 
 				</li>
-				<li><a href="#">ПРОГРАММИРОВАНИЕ</a></li>
 				<li><a href="#">СТАТЬИ</a></li>
-				<li><a href="#">НОВОСТИ</a></li>
-				<li><a href="#">КОНТАКТЫ</a></li>
+				<li><a href="{{route('page.blog')}}">НОВОСТИ</a></li>
+				<li><a href="{{route('page.contacts')}}">КОНТАКТЫ</a></li>
 			</ul><!-- main-menu -->
 
 		</div><!-- conatiner -->
@@ -106,13 +104,13 @@
 		</div><!-- container -->
 
 		<ul class="instagram">
-			<li><a href="#"><img src="images/instragram-1-300x400.jpg" alt="Instagram Image"></a></li>
-			<li><a href="#"><img src="images/instragram-2-300x400.jpg" alt="Instagram Image"></a></li>
-			<li><a href="#"><img src="images/instragram-3-300x400.jpg" alt="Instagram Image"></a></li>
-			<li><a href="#"><img src="images/instragram-4-300x400.jpg" alt="Instagram Image"></a></li>
-			<li><a href="#"><img src="images/instragram-5-300x400.jpg" alt="Instagram Image"></a></li>
-			<li><a href="#"><img src="images/instragram-6-300x400.jpg" alt="Instagram Image"></a></li>
-			<li><a href="#"><img src="images/instragram-7-300x400.jpg" alt="Instagram Image"></a></li>
+			<li><a href="#"><img src="{{asset('images/instragram-1-300x400.jpg')}}" alt="Instagram Image"></a></li>
+			<li><a href="#"><img src="{{asset('images/instragram-2-300x400.jpg')}}" alt="Instagram Image"></a></li>
+			<li><a href="#"><img src="{{asset('images/instragram-3-300x400.jpg')}}" alt="Instagram Image"></a></li>
+			<li><a href="#"><img src="{{asset('images/instragram-4-300x400.jpg')}}" alt="Instagram Image"></a></li>
+			<li><a href="#"><img src="{{asset('images/instragram-5-300x400.jpg')}}" alt="Instagram Image"></a></li>
+			<li><a href="#"><img src="{{asset('images/instragram-6-300x400.jpg')}}" alt="Instagram Image"></a></li>
+			<li><a href="#"><img src="{{asset('images/instragram-7-300x400.jpg')}}" alt="Instagram Image"></a></li>
 		</ul>
 	</section><!-- section -->
 
@@ -146,15 +144,15 @@
 
 	<!-- SCIPTS -->
 
-	<script src="common-js/jquery-3.1.1.min.js"></script>
+	<script src="{{asset('common-js/jquery-3.1.1.min.js')}}"></script>
 
-	<script src="common-js/tether.min.js"></script>
+	<script src="{{asset('common-js/tether.min.js')}}"></script>
 
-	<script src="common-js/bootstrap.js"></script>
+	<script src="{{asset('common-js/bootstrap.js')}}"></script>
 
-	<script src="common-js/layerslider.js"></script>
+	<script src="{{asset('common-js/layerslider.js')}}"></script>
 
-	<script src="common-js/scripts.js"></script>
+	<script src="{{asset('common-js/scripts.js')}}"></script>
 
 </body>
 </html>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Blog;
+use App\Category;
 
 class BlogController extends Controller
 {
@@ -14,7 +16,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $items = Blog::paginate(12);
+        return view('admin.blog.blog-index', compact(['items']));
     }
 
     /**
@@ -24,7 +27,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('title','id')->all();
+        return view('admin.blog.blog-create', compact(['categories']));
     }
 
     /**

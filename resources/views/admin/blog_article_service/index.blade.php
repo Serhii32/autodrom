@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <h3 class="card-header text-center text-uppercase">Новини</h3>
+                <h3 class="card-header text-center text-uppercase">@if($identificator == 'blog') Новини @elseif($identificator == 'article') Статті @else Послуги @endif</h3>
 
                 <div class="card-body">
                     @if(session('message'))
@@ -20,14 +20,14 @@
                                 @foreach($items as $item)
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                         <div class="card h-100">
-                                            <img class="card-img-top" alt="{{$item->title}}" src="{{ $item->main_photo ? asset($item->main_photo) : asset('img/site/blog/default.png') }}">
+                                            <img class="card-img-top" alt="{{$item->title}}" src="{{ $item->main_photo ? asset($item->main_photo) : asset('img/site/common/default.png') }}">
                                             <h3 class="text-center card-title"><a href="{{route('admin/blog.show', $item->id)}}">{{$item->title}}</a></h3>
                                             @isset($item->category)
                                                 <h4 class="card-text pl-2">Категорія: <a href="{{route('admin/category.edit', $item->category->id)}}">{{$item->category->title}}</a></h4>
                                             @endisset
                                             <div class="card-footer">
-                                                <a href="{{ route('admin/blog.edit', $item->id) }}" class="btn btn-warning w-100 text-uppercase font-weight-bold">Редагувати</a>
-                                                <form class="w-100" action="{{ route('admin/blog.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Видалити товар?');">
+                                                <a href="{{ route('admin/'.$identificator.'.edit', $item->id) }}" class="btn btn-warning w-100 text-uppercase font-weight-bold">Редагувати</a>
+                                                <form class="w-100" action="{{ route('admin/'.$identificator.'.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Підтвердити видалення?');">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                         {{ csrf_field() }}
                                                     <button class="btn btn-danger w-100 text-uppercase font-weight-bold">Видалити</button>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="text-center">{{$items->links()}}</div>
                     @else
-                        <h4 class="text-center">Новини відсутні</h4>
+                        <h4 class="text-center">@if($identificator == 'blog') Новини @elseif($identificator == 'article') Статті @else Послуги @endif відсутні</h4>
                     @endif
                 </div>
             </div>

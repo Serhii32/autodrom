@@ -23,39 +23,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth', 'as' => 'admin/', 
 	Route::get('home/edit', ['as' => 'home.edit', 'uses' => 'HomeController@edit']);
 	Route::match(['put', 'patch'], 'home/store', ['as' => 'home.store', 'uses' => 'HomeController@store']);
 	Route::delete('/category/removeItemFromCategory/{itemId}', ['as' => 'category.removeItemFromCategory', 'uses' => 'CategoryController@removeItemFromCategory']);
+	Route::post('upload-image', ['as' => 'upload-image', 'uses' => 'UploadedImagesController@uploadImage']);
+	Route::get('uploaded-images', ['as' => 'uploaded-images.index', 'uses' => 'UploadedImagesController@index']);
 	Route::resource('blog', 'BlogController');
 	Route::resource('article', 'ArticleController');
 	Route::resource('feedback', 'FeedbackController');
 	Route::resource('category', 'CategoryController')->except(['create', 'show']);
-
-	// Route::post('upload-image', ['as' => 'upload-image', 'uses' => 'FileUploadController@uploadImage']);
-
-	Route::post('upload-image', function(
-	    \Illuminate\Http\Request $request,
-	    Illuminate\Contracts\Validation\Factory $validator
-	) {
-	    $v = $validator->make($request->all(), [
-	        'upload' => 'required|image',
-	    ]);
-
-	    $funcNum = $request->input('CKEditorFuncNum');
-
-	    if ($v->fails()) {
-	        return response(
-	            "<script>
-	                window.parent.CKEDITOR.tools.callFunction({$funcNum}, '', '{$v->errors()->first()}');
-	            </script>"
-	        );
-	    }
-
-	    $image = $request->file('upload');
-	    $image->store('img/uploads');
-	    $url = asset('img/uploads/'.$image->hashName());
-
-	    return response(
-	        "<script>
-	            window.parent.CKEDITOR.tools.callFunction({$funcNum}, '{$url}', 'Изображение успешно загружено');
-	        </script>"
-	    );
-	});
+	Route::resource('service', 'ServiceController');
 });

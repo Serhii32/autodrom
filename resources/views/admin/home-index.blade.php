@@ -25,7 +25,7 @@
                             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                 <div class="card h-100">
                                     <a class="card-link" href="{{ route('admin/blog.index') }}">
-                                        <img class="card-img-top" alt="Список новин" src="{{ asset('img/admin/home/news-list.png') }}">
+                                        <img class="card-img-top" alt="Список новин" src="{{ asset('img/admin/home/list.png') }}">
                                         <h3 class="text-center card-title">Список новин</h3>
                                     </a>
                                 </div>
@@ -33,7 +33,7 @@
                             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                 <div class="card h-100">
                                     <a class="card-link" href="{{ route('admin/blog.create') }}">
-                                        <img class="card-img-top" alt="Додати новину" src="{{ asset('img/admin/home/add-news.png') }}">
+                                        <img class="card-img-top" alt="Додати новину" src="{{ asset('img/admin/home/add.png') }}">
                                         <h3 class="text-center card-title">Додати новину</h3>
                                     </a>
                                 </div>
@@ -41,7 +41,7 @@
                             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                 <div class="card h-100">
                                     <a class="card-link" href="{{ route('admin/article.index') }}">
-                                        <img class="card-img-top" alt="Список статей" src="{{ asset('img/admin/home/articles-list.png') }}">
+                                        <img class="card-img-top" alt="Список статей" src="{{ asset('img/admin/home/list.png') }}">
                                         <h3 class="text-center card-title">Список статей</h3>
                                     </a>
                                 </div>
@@ -49,7 +49,7 @@
                             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                 <div class="card h-100">
                                     <a class="card-link" href="{{ route('admin/article.create') }}">
-                                        <img class="card-img-top" alt="Додати статтю" src="{{ asset('img/admin/home/add-article.png') }}">
+                                        <img class="card-img-top" alt="Додати статтю" src="{{ asset('img/admin/home/add.png') }}">
                                         <h3 class="text-center card-title">Додати статтю</h3>
                                     </a>
                                 </div>
@@ -57,7 +57,7 @@
                             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                 <div class="card h-100">
                                     <a class="card-link" href="{{ route('admin/category.index') }}">
-                                        <img class="card-img-top" alt="Категорії" src="{{ asset('img/admin/home/category.png') }}">
+                                        <img class="card-img-top" alt="Категорії" src="{{ asset('img/admin/home/list.png') }}">
                                         <h3 class="text-center card-title">Категорії</h3>
                                     </a>
                                 </div>
@@ -65,7 +65,7 @@
                             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                 <div class="card h-100">
                                     <a class="card-link" href="{{ route('admin/feedback.index') }}">
-                                        <img class="card-img-top" alt="Список відгуків" src="{{ asset('img/admin/home/feedback-list.png') }}">
+                                        <img class="card-img-top" alt="Список відгуків" src="{{ asset('img/admin/home/list.png') }}">
                                         <h3 class="text-center card-title">Список відгуків</h3>
                                     </a>
                                 </div>
@@ -73,8 +73,16 @@
                             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                 <div class="card h-100">
                                     <a class="card-link" href="{{ route('admin/feedback.create') }}">
-                                        <img class="card-img-top" alt="Додати відгук" src="{{ asset('img/admin/home/add-feedback.png') }}">
+                                        <img class="card-img-top" alt="Додати відгук" src="{{ asset('img/admin/home/add.png') }}">
                                         <h3 class="text-center card-title">Додати відгук</h3>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+                                <div class="card h-100">
+                                    <a class="card-link" href="{{ route('admin/uploaded-images.index') }}">
+                                        <img class="card-img-top" alt="Завантажені зображення" src="{{ asset('img/admin/home/list.png') }}">
+                                        <h3 class="text-center card-title">Завантажені зображення</h3>
                                     </a>
                                 </div>
                             </div>

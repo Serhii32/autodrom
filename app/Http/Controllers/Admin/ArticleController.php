@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Article;
+use App\Category;
+use App\Http\Requests\StoreBlogArticleServiceRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -12,9 +16,17 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $identificator;
+
+    public function __construct() 
+    {
+        $this->identificator = 'article';
+    }
+
     public function index()
     {
-        //
+        $items = Article::paginate(12);
+        return view('admin.blog_article_service.index', compact(['items']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -24,7 +36,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('title','id')->all();
+        return view('admin.blog_article_service.create', compact(['categories']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -33,9 +46,19 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogArticleServiceRequest $request)
     {
-        //
+        $item = new Article();
+        $item->title = $request->title;
+        $item->description = $request->description;
+        $item->category_id = $request->category;
+        $item->save();
+        $last_insereted_id = $item->id;
+        if ($request->main_photo != null) {
+            $item->main_photo = $request->main_photo->store('img/site/article/' . $last_insereted_id);
+            $item->save();
+        }
+        return redirect()->route('admin/article.index')->with(['message' => 'Стаття додана успішно']);
     }
 
     /**
@@ -44,7 +67,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -55,7 +78,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         //
     }
@@ -67,7 +90,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBlogArticleServiceRequest $request, int $id)
     {
         //
     }
@@ -78,7 +101,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
     }

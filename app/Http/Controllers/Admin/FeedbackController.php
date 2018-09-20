@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Feedback;
+use App\Http\Requests\StoreFeedbackRequest;
+use Illuminate\Support\Facades\Storage;
 
 class FeedbackController extends Controller
 {
@@ -14,7 +17,8 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        $items = Feedback::paginate(12);
+        return view('admin.feedback.feedback-index', compact(['items']));
     }
 
     /**
@@ -24,7 +28,7 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.feedback.feedback-create');
     }
 
     /**
@@ -33,9 +37,18 @@ class FeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFeedbackRequest $request)
     {
-        //
+        $item = new Feedback();
+        $item->title = $request->title;
+        $item->description = $request->description;
+        $item->save();
+        $last_insereted_id = $item->id;
+        if ($request->main_photo != null) {
+            $item->main_photo = $request->main_photo->store('img/site/feedback/' . $last_insereted_id);
+            $item->save();
+        }
+        return redirect()->route('admin/feedback.index')->with(['message' => 'Відгук доданий успішно']);
     }
 
     /**
@@ -44,9 +57,10 @@ class FeedbackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        $item = Feedback::findOrFail($id);
+        return view('admin.feedback.feedback-show', compact(['item']));
     }
 
     /**
@@ -55,9 +69,10 @@ class FeedbackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        //
+        $item = Feedback::findOrFail($id);
+        return view('admin.feedback.feedback-edit', compact(['item']));
     }
 
     /**
@@ -67,9 +82,25 @@ class FeedbackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreFeedbackRequest $request, int $id)
     {
-        //
+        $item = Feedback::findOrFail($id);
+        $item->title = $request->title;
+        $item->description = $request->description;
+        $item->save();
+        $last_insereted_id = $item->id;
+
+        if ($request->main_photo != null) {
+
+            if($item->main_photo) {
+                Storage::disk('local')->delete($item->main_photo);
+            }
+
+            $item->main_photo = $request->main_photo->store('img/site/feedback/' . $last_insereted_id);
+            $item->save();
+        }
+
+        return redirect()->route('admin/feedback.index')->with(['message' => 'Відгук успішно оновлений']);
     }
 
     /**
@@ -78,8 +109,11 @@ class FeedbackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        Storage::disk('local')->deleteDirectory('img/site/feedback/' . $id);
+        $item = Feedback::findOrFail($id);
+        $item->delete();
+        return redirect()->route('admin/article.index')->with(['message' => 'Відгук успішно видалений']);
     }
 }

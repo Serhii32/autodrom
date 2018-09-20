@@ -66,23 +66,23 @@
 			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
 			<ul class="main-menu visible-on-click" id="main-menu">
-				<li class="drop-down"><a href="#!">УСЛУГИ<i class="ion-ios-arrow-down"></i></a>
+				<li {{-- class="drop-down" --}}><a href="#!">УСЛУГИ{{-- <i class="ion-ios-arrow-down"></i> --}}</a>
 
-					<ul class="drop-down-menu">
+					{{-- <ul class="drop-down-menu">
 						<li><a href="#">ПРОГРАММИРОВАНИЕ ЕБУ</a></li>
 						<li><a href="#">ПРОГРАММИРОВАНИЕ</a></li>
-						<li {{-- class="drop-down" --}}><a href="#!">УДАЛЕНИЕ САЖЕВОГО ФИЛЬТРА DPF/FOP{{-- <i class="ion-ios-arrow-right"></i> --}}</a>
-							{{-- <ul class="drop-down-menu drop-down-inner">
+						<li class="drop-down"><a href="#!">УДАЛЕНИЕ САЖЕВОГО ФИЛЬТРА DPF/FOP<i class="ion-ios-arrow-right"></i></a>
+							<ul class="drop-down-menu drop-down-inner">
 								<li><a href="#">FEATURED</a></li>
 								<li><a href="#">ABOUT</a></li>
 								<li><a href="#">CATEGORIES</a></li>
-							</ul> --}}
+							</ul>
 						</li>
 						<li><a href="#">ОТКЛЮЧЕНИЕ СИСТЕМЫ РЕЦИРКУЛЯЦИИ ВЫХЛОПНЫХ ГАЗОВ (КЛАПАН EGR)</a></li>
 						<li><a href="#">УВЕЛИЧЕНИЕ МОЩНОСТИ</a></li>
 						<li><a href="#">ОТКЛЮЧЕНИЕ КАТАЛИЗАТОРА</a></li>
 						<li><a href="#">ОТКЛЮЧЕНИЕ СИСТЕМЫ ADBLUE</a></li>
-					</ul>
+					</ul> --}}
 
 				</li>
 				<li><a href="#">СТАТЬИ</a></li>

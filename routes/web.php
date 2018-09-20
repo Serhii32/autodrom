@@ -25,6 +25,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth', 'as' => 'admin/', 
 	Route::delete('/category/removeItemFromCategory/{itemId}', ['as' => 'category.removeItemFromCategory', 'uses' => 'CategoryController@removeItemFromCategory']);
 	Route::post('upload-image', ['as' => 'upload-image', 'uses' => 'UploadedImagesController@uploadImage']);
 	Route::get('uploaded-images', ['as' => 'uploaded-images.index', 'uses' => 'UploadedImagesController@index']);
+	Route::delete('uploaded-images/{imageName}', ['as' => 'uploaded-images.destroy', 'uses' => 'UploadedImagesController@destroy']);
+	Route::delete('/category/removeItemFromCategory/{itemId}/{type}', ['as' => 'category.removeItemFromCategory', 'uses' => 'CategoryController@removeItemFromCategory']);
 	Route::resource('blog', 'BlogController');
 	Route::resource('article', 'ArticleController');
 	Route::resource('feedback', 'FeedbackController');

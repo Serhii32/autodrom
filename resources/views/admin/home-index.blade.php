@@ -80,6 +80,22 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                 <div class="card h-100">
+                                    <a class="card-link" href="{{ route('admin/service.index') }}">
+                                        <img class="card-img-top" alt="Список послуг" src="{{ asset('img/admin/home/list.png') }}">
+                                        <h3 class="text-center card-title">Список послуг</h3>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+                                <div class="card h-100">
+                                    <a class="card-link" href="{{ route('admin/service.create') }}">
+                                        <img class="card-img-top" alt="Додати послугу" src="{{ asset('img/admin/home/add.png') }}">
+                                        <h3 class="text-center card-title">Додати послугу</h3>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+                                <div class="card h-100">
                                     <a class="card-link" href="{{ route('admin/uploaded-images.index') }}">
                                         <img class="card-img-top" alt="Завантажені зображення" src="{{ asset('img/admin/home/list.png') }}">
                                         <h3 class="text-center card-title">Завантажені зображення</h3>

@@ -30,6 +30,11 @@
                             <span class="text-danger">{{ $errors->first('main_photo') }}</span>
                         </div>
                         <div class="form-group">
+                            {!! Form::label('short_description', 'Основна частина:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                            {!! Form::textarea('short_description', old('short_description'), ['placeholder' => 'Короткий опис'] + ($errors->has('short_description') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                            <span class="text-danger">{{ $errors->first('short_description') }}</span>
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('description', 'Основна частина:', ['class' => 'text-uppercase font-weight-bold']) !!}
                             {!! Form::textarea('description', old('description'), ['id' => 'editor'] + ($errors->has('description') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
                             <span class="text-danger">{{ $errors->first('description') }}</span>

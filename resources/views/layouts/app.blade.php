@@ -56,8 +56,29 @@
                                     <a class="dropdown-item" href="{{ route('admin/blog.create') }}">
                                         Додати новину
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('admin/article.index') }}">
+                                        Список статей
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin/article.create') }}">
+                                        Додати статтю
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin/service.index') }}">
+                                        Список послуг
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin/service.create') }}">
+                                        Додати послугу
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin/feedback.index') }}">
+                                        Список відгуків
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin/feedback.create') }}">
+                                        Додати відгук
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('admin/category.index') }}">
                                         Список категорій
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin/uploaded-images.index') }}">
+                                        Завантажені зображення
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

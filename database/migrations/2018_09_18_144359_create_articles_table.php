@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('main_photo')->nullable();
+            $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->integer('category_id')->nullable()->unsigned();
             $table->timestamps();

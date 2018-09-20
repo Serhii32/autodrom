@@ -15,6 +15,16 @@ class Category extends Model
         return $this->hasMany('App\Blog');
     }
 
+    public function article()
+    {
+        return $this->hasMany('App\Article');
+    }
+
+    public function service()
+    {
+        return $this->hasMany('App\Service');
+    }
+
     public function childs() 
     {
         return $this->hasMany('App\Category','parent_id','id') ;

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Service;
 
 class PageController extends Controller
 {
     public function index() 
     {
-    	return view('index-page');
+        $serviceItems = Service::all();
+    	return view('index-page', compact(['serviceItems']));
     }
 
     public function blog() 

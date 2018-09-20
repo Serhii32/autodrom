@@ -47,55 +47,70 @@
 							</div>
 						</div>
 
-						<div class="container">
-							<div class="row justify-content-center">
-								<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
-									<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
-						    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/dpf.jpg')}}" alt="Card image cap">
-						  				<div class="card-body text-center">
-						    				<h6 class="card-title"><strong>Удаление сажевого фильтра  DPF/FOP</strong></h6>
-						    				<p class="card-text p-2" style="font-size: 12px;">Ефективное решение проблемы с сажевым фильтром DPF/FOP раз и навсегда!</p>
-						  				</div>
+						@if(count($serviceItems))
+							<div class="container">
+								<div class="row justify-content-center">
+									@foreach($serviceItems as $serviceItem)
+
+										<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+											<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
+								    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{ $serviceItem->main_photo ? asset($serviceItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$serviceItem->title}}">
+								  				<div class="card-body text-center">
+								    				<h6 class="card-title"><strong>{{$serviceItem->title}}</strong></h6>
+								    				<p class="card-text p-2" style="font-size: 12px;">{{$serviceItem->short_description}}</p>
+								  				</div>
+											</div>
+										</div>
+
+									@endforeach
+									<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+										<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
+							    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/dpf.jpg')}}" alt="Card image cap">
+							  				<div class="card-body text-center">
+							    				<h6 class="card-title"><strong>Удаление сажевого фильтра  DPF/FOP</strong></h6>
+							    				<p class="card-text p-2" style="font-size: 12px;">Ефективное решение проблемы с сажевым фильтром DPF/FOP раз и навсегда!</p>
+							  				</div>
+										</div>
 									</div>
-								</div>
-								<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
-									<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
-						    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/egr_off.jpg')}}" alt="Card image cap">
-						  				<div class="card-body text-center">
-						    				<h6 class="card-title"><strong>Отключение системы рециркуляции выхлопных газов (клапан EGR)</strong></h6>
-						    				<p class="card-text p-2" style="font-size: 12px;">Продлите жизнь двигателя Вашего автомобиля, он будет дышать чистым воздухом!</p>
-						  				</div>
+									<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+										<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
+							    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/egr_off.jpg')}}" alt="Card image cap">
+							  				<div class="card-body text-center">
+							    				<h6 class="card-title"><strong>Отключение системы рециркуляции выхлопных газов (клапан EGR)</strong></h6>
+							    				<p class="card-text p-2" style="font-size: 12px;">Продлите жизнь двигателя Вашего автомобиля, он будет дышать чистым воздухом!</p>
+							  				</div>
+										</div>
 									</div>
-								</div>
-								<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
-									<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
-						    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/chip_tuning.jpg')}}" alt="Card image cap">
-						  				<div class="card-body text-center">
-						    				<h6 class="card-title"><strong>Увеличение мощности</strong></h6>
-						    				<p class="card-text p-2" style="font-size: 12px;">Улучшение динамики 30% (Stage 1), без потери в экономичности</p>
-						  				</div>
+									<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+										<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
+							    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/chip_tuning.jpg')}}" alt="Card image cap">
+							  				<div class="card-body text-center">
+							    				<h6 class="card-title"><strong>Увеличение мощности</strong></h6>
+							    				<p class="card-text p-2" style="font-size: 12px;">Улучшение динамики 30% (Stage 1), без потери в экономичности</p>
+							  				</div>
+										</div>
 									</div>
-								</div>
-								<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
-									<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
-						    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/catalyst.jpg')}}" alt="Card image cap">
-						  				<div class="card-body text-center">
-						    				<h6 class="card-title"><strong>Отключение Катализатора</strong></h6>
-						    				<p class="card-text p-2" style="font-size: 12px;">Отключение второго лямбда зонда. Перевод автомобиля на Евро2.</p>
-						  				</div>
+									<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+										<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
+							    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/catalyst.jpg')}}" alt="Card image cap">
+							  				<div class="card-body text-center">
+							    				<h6 class="card-title"><strong>Отключение Катализатора</strong></h6>
+							    				<p class="card-text p-2" style="font-size: 12px;">Отключение второго лямбда зонда. Перевод автомобиля на Евро2.</p>
+							  				</div>
+										</div>
 									</div>
-								</div>
-								<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
-									<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
-						    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/AdBlue.jpg')}}" alt="Card image cap">
-						  				<div class="card-body text-center">
-						    				<h6 class="card-title"><strong>Отключение системы AdBlue</strong></h6>
-						    				<p class="card-text p-2" style="font-size: 12px;">Автомобиль будет экономнее. Вам не нужно тратится на реагенты.</p>
-						  				</div>
+									<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+										<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
+							    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/AdBlue.jpg')}}" alt="Card image cap">
+							  				<div class="card-body text-center">
+							    				<h6 class="card-title"><strong>Отключение системы AdBlue</strong></h6>
+							    				<p class="card-text p-2" style="font-size: 12px;">Автомобиль будет экономнее. Вам не нужно тратится на реагенты.</p>
+							  				</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						@endif
 					</div><!-- blog-posts -->
 				</div><!-- col-lg-4 -->
 			</div><!-- row -->

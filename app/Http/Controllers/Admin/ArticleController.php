@@ -69,7 +69,8 @@ class ArticleController extends Controller
      */
     public function show(int $id)
     {
-        //
+        $item = Article::findOrFail($id);
+        return view('admin.blog_article_service.show', compact(['item']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -80,7 +81,9 @@ class ArticleController extends Controller
      */
     public function edit(int $id)
     {
-        //
+        $categories = Category::pluck('title','id')->all();
+        $item = Article::findOrFail($id);
+        return view('admin.blog_article_service.edit', compact(['item', 'categories']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -92,7 +95,24 @@ class ArticleController extends Controller
      */
     public function update(StoreBlogArticleServiceRequest $request, int $id)
     {
-        //
+        $item = Article::findOrFail($id);
+        $item->title = $request->title;
+        $item->description = $request->description;
+        $item->category_id = $request->category;
+        $item->save();
+        $last_insereted_id = $item->id;
+
+        if ($request->main_photo != null) {
+
+            if($item->main_photo) {
+                Storage::disk('local')->delete($item->main_photo);
+            }
+
+            $item->main_photo = $request->main_photo->store('img/site/article/' . $last_insereted_id);
+            $item->save();
+        }
+
+        return redirect()->route('admin/article.index')->with(['message' => 'Стаття успішно оновлена']);
     }
 
     /**
@@ -103,6 +123,9 @@ class ArticleController extends Controller
      */
     public function destroy(int $id)
     {
-        //
+        Storage::disk('local')->deleteDirectory('img/site/article/' . $id);
+        $item = Article::findOrFail($id);
+        $item->delete();
+        return redirect()->route('admin/article.index')->with(['message' => 'Стаття успішно видалена']);
     }
 }

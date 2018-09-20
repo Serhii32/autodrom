@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Service;
+use App\Category;
+use App\Http\Requests\StoreBlogArticleServiceRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
@@ -12,9 +16,17 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $identificator;
+
+    public function __construct() 
+    {
+        $this->identificator = 'service';
+    }
+
     public function index()
     {
-        //
+        $items = Service::paginate(12);
+        return view('admin.blog_article_service.index', compact(['items']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -24,7 +36,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('title','id')->all();
+        return view('admin.blog_article_service.create', compact(['categories']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -33,9 +46,19 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogArticleServiceRequest $request)
     {
-        //
+        $item = new Service();
+        $item->title = $request->title;
+        $item->description = $request->description;
+        $item->category_id = $request->category;
+        $item->save();
+        $last_insereted_id = $item->id;
+        if ($request->main_photo != null) {
+            $item->main_photo = $request->main_photo->store('img/site/service/' . $last_insereted_id);
+            $item->save();
+        }
+        return redirect()->route('admin/service.index')->with(['message' => 'Послуга додана успішно']);
     }
 
     /**
@@ -44,9 +67,10 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        $item = Service::findOrFail($id);
+        return view('admin.blog_article_service.show', compact(['item']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -55,9 +79,11 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        //
+        $categories = Category::pluck('title','id')->all();
+        $item = Service::findOrFail($id);
+        return view('admin.blog_article_service.edit', compact(['item', 'categories']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -67,9 +93,26 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBlogArticleServiceRequest $request, int $id)
     {
-        //
+        $item = Service::findOrFail($id);
+        $item->title = $request->title;
+        $item->description = $request->description;
+        $item->category_id = $request->category;
+        $item->save();
+        $last_insereted_id = $item->id;
+
+        if ($request->main_photo != null) {
+
+            if($item->main_photo) {
+                Storage::disk('local')->delete($item->main_photo);
+            }
+
+            $item->main_photo = $request->main_photo->store('img/site/service/' . $last_insereted_id);
+            $item->save();
+        }
+
+        return redirect()->route('admin/service.index')->with(['message' => 'Послуга успішно оновлена']);
     }
 
     /**
@@ -78,8 +121,11 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        Storage::disk('local')->deleteDirectory('img/site/service/' . $id);
+        $item = Service::findOrFail($id);
+        $item->delete();
+        return redirect()->route('admin/service.index')->with(['message' => 'Послуга успішно видалена']);
     }
 }

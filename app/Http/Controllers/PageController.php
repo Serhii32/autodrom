@@ -46,23 +46,23 @@ class PageController extends Controller
     public function article() 
     {
         $identificator = 'article';
-        $items = Article::all();
+        $items = Article::paginate(6);
         return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles]);
     }
     
     public function feedback()
     {
         $identificator = 'feedback';
-        $items = Feedback::all();
+        $items = Feedback::paginate(6);
         return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles]);
     }
 
     public function category_item(int $id) 
     {
-        $identificator = 'category';
+        $identificator = 'blog';
         $category = Category::findOrFail($id);
-        $items = $category->blog();
-        $childs = $category->childs();
+        $items = $category->blog()->paginate(6);
+        $childs = $category->childs()->get();
         return view('items-page', compact(['items', 'childs', 'identificator']), ['serviceTitles' => $this->serviceTitles]);
     }
 

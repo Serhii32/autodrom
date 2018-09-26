@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     @endif
-                    @if(count($articleItems))
+                    {{-- @if(count($articleItems))
                         <h3 class="text-center p-2 m-5">Статті в даній категорії</h3>
                         <div class="container">
                             <div class="row">
@@ -72,8 +72,8 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endif
-                    @if(count($serviceItems))
+                    @endif --}}
+                    {{-- @if(count($serviceItems))
                         <h3 class="text-center p-2 m-5">Послуги в даній категорії</h3>
                         <div class="container">
                             <div class="row">
@@ -85,7 +85,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@
 			</form>
 		</div><!-- sidebar-section newsletter-area --> --}}
 
-		<div class="sidebar-section category-area">
+		{{-- <div class="sidebar-section category-area">
 			<h4 class="title"><b class="light-color">Categories</b></h4>
 			<a class="category" href="#">
 				<img src="{{asset('images/category-1-400x150.jpg')}}" alt="Category Image">
@@ -46,7 +46,7 @@
 				<img src="{{asset('images/category-4-400x150.jpg')}}" alt="Category Image">
 				<h6 class="name">DESIGN</h6>
 			</a>
-		</div><!-- sidebar-section category-area -->
+		</div><!-- sidebar-section category-area --> --}}
 
 		<div class="sidebar-section latest-post-area">
 			<h4 class="title"><b class="light-color">Latest Posts</b></h4>

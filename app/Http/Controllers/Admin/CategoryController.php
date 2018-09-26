@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Blog;
-use App\Article;
-use App\Service;
+// use App\Article;
+// use App\Service;
 use App\Http\Requests\StoreCategoryRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -55,8 +55,8 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $blogItems = Blog::where('category_id', $id)->get();
-        $articleItems = Article::where('category_id', $id)->get();
-        $serviceItems = Service::where('category_id', $id)->get();
+        // $articleItems = Article::where('category_id', $id)->get();
+        // $serviceItems = Service::where('category_id', $id)->get();
         $allCategories = Category::pluck('title','id')->all();
         unset($allCategories[$id]);
         return view('admin.categories.categories-edit', compact(['category', 'allCategories', 'blogItems', 'articleItems', 'serviceItems']));
@@ -100,16 +100,16 @@ class CategoryController extends Controller
             $blogItem->category_id = null;
             $blogItem->save();
         }
-        $articleItems = Article::where('category_id', $id)->get();
-        foreach ($articleItems as $articleItem) {
-            $articleItem->category_id = null;
-            $articleItem->save();
-        }
-        $serviceItems = Service::where('category_id', $id)->get();
-        foreach ($serviceItems as $serviceItem) {
-            $serviceItem->category_id = null;
-            $serviceItem->save();
-        }
+        // $articleItems = Article::where('category_id', $id)->get();
+        // foreach ($articleItems as $articleItem) {
+        //     $articleItem->category_id = null;
+        //     $articleItem->save();
+        // }
+        // $serviceItems = Service::where('category_id', $id)->get();
+        // foreach ($serviceItems as $serviceItem) {
+        //     $serviceItem->category_id = null;
+        //     $serviceItem->save();
+        // }
         $childCategories = Category::where('parent_id', $id)->get();
         foreach ($childCategories as $childCategory) {
             $childCategory->parent_id = 0;

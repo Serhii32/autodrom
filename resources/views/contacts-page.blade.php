@@ -21,35 +21,6 @@
 
 						</div><!-- single-post -->
 
-						<div class="leave-comment-area">
-							<h4 class="title"><b class="light-color">Leave a comment</b></h4>
-							<div class="leave-comment">
-
-								<form method="post">
-									<div class="row">
-										<div class="col-sm-6">
-											<input class="name-input" type="text" placeholder="Name">
-										</div>
-										<div class="col-sm-6">
-											<input class="email-input" type="text" placeholder="Email">
-										</div>
-										<div class="col-sm-12">
-											<input class="subject-input" type="text" placeholder="Subject">
-										</div>
-										<div class="col-sm-12">
-											<textarea class="message-input" rows="6" placeholder="Message"></textarea>
-										</div>
-										<div class="col-sm-12">
-											<button class="btn btn-2"><b>COMMENT</b></button>
-										</div>
-
-									</div><!-- row -->
-								</form>
-
-							</div><!-- leave-comment -->
-
-						</div><!-- comments-area -->
-
 					</div><!-- blog-posts -->
 				</div><!-- col-lg-4 -->
 

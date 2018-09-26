@@ -4767,6 +4767,7 @@ tbody.collapse.show {
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem;
+  justify-content: center;
 }
 
 .page-item:first-child .page-link {
@@ -4783,8 +4784,8 @@ tbody.collapse.show {
 .page-item.active .page-link {
   z-index: 2;
   color: #fff;
-  background-color: #0275d8;
-  border-color: #0275d8;
+  background-color: #ffad4d;
+  border-color: #ffad4d;
 }
 
 .page-item.disabled .page-link {
@@ -4801,7 +4802,7 @@ tbody.collapse.show {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #0275d8;
+  color: #ffad4d;
   background-color: #fff;
   border: 1px solid #ddd;
 }

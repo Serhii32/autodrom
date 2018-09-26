@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Article;
-use App\Category;
-use App\Http\Requests\StoreBlogArticleServiceRequest;
+use App\Http\Requests\StoreArticleServiceFeedbackRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
@@ -26,7 +25,7 @@ class ArticleController extends Controller
     public function index()
     {
         $items = Article::paginate(12);
-        return view('admin.blog_article_service.index', compact(['items']), ['identificator' => $this->identificator]);
+        return view('admin.feedback_article_service.index', compact(['items']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -36,8 +35,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('title','id')->all();
-        return view('admin.blog_article_service.create', compact(['categories']), ['identificator' => $this->identificator]);
+        return view('admin.feedback_article_service.create', ['identificator' => $this->identificator]);
     }
 
     /**
@@ -46,12 +44,12 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlogArticleServiceRequest $request)
+    public function store(StoreArticleServiceFeedbackRequest $request)
     {
         $item = new Article();
         $item->title = $request->title;
         $item->description = $request->description;
-        $item->category_id = $request->category;
+        $item->short_description = $request->short_description;
         $item->save();
         $last_insereted_id = $item->id;
         if ($request->main_photo != null) {
@@ -70,7 +68,7 @@ class ArticleController extends Controller
     public function show(int $id)
     {
         $item = Article::findOrFail($id);
-        return view('admin.blog_article_service.show', compact(['item']), ['identificator' => $this->identificator]);
+        return view('admin.feedback_article_service.show', compact(['item']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -81,9 +79,8 @@ class ArticleController extends Controller
      */
     public function edit(int $id)
     {
-        $categories = Category::pluck('title','id')->all();
         $item = Article::findOrFail($id);
-        return view('admin.blog_article_service.edit', compact(['item', 'categories']), ['identificator' => $this->identificator]);
+        return view('admin.feedback_article_service.edit', compact(['item']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -93,12 +90,12 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreBlogArticleServiceRequest $request, int $id)
+    public function update(StoreArticleServiceFeedbackRequest $request, int $id)
     {
         $item = Article::findOrFail($id);
         $item->title = $request->title;
         $item->description = $request->description;
-        $item->category_id = $request->category;
+        $item->short_description = $request->short_description;
         $item->save();
         $last_insereted_id = $item->id;
 

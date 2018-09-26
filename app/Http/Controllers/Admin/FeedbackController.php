@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Feedback;
-use App\Http\Requests\StoreFeedbackRequest;
+use App\Http\Requests\StoreArticleServiceFeedbackRequest;
 use Illuminate\Support\Facades\Storage;
 
 class FeedbackController extends Controller
@@ -15,10 +15,17 @@ class FeedbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $identificator;
+
+    public function __construct() 
+    {
+        $this->identificator = 'feedback';
+    }
+
     public function index()
     {
         $items = Feedback::paginate(12);
-        return view('admin.feedback.feedback-index', compact(['items']));
+        return view('admin.feedback_article_service.index', compact(['items']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -28,7 +35,7 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        return view('admin.feedback.feedback-create');
+        return view('admin.feedback_article_service.create', ['identificator' => $this->identificator]);
     }
 
     /**
@@ -37,11 +44,12 @@ class FeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFeedbackRequest $request)
+    public function store(StoreArticleServiceFeedbackRequest $request)
     {
         $item = new Feedback();
         $item->title = $request->title;
         $item->description = $request->description;
+        $item->short_description = $request->short_description;
         $item->save();
         $last_insereted_id = $item->id;
         if ($request->main_photo != null) {
@@ -60,7 +68,7 @@ class FeedbackController extends Controller
     public function show(int $id)
     {
         $item = Feedback::findOrFail($id);
-        return view('admin.feedback.feedback-show', compact(['item']));
+        return view('admin.feedback_article_service.show', compact(['item']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -72,7 +80,7 @@ class FeedbackController extends Controller
     public function edit(int $id)
     {
         $item = Feedback::findOrFail($id);
-        return view('admin.feedback.feedback-edit', compact(['item']));
+        return view('admin.feedback_article_service.edit', compact(['item']), ['identificator' => $this->identificator]);
     }
 
     /**
@@ -82,11 +90,12 @@ class FeedbackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreFeedbackRequest $request, int $id)
+    public function update(StoreArticleServiceFeedbackRequest $request, int $id)
     {
         $item = Feedback::findOrFail($id);
         $item->title = $request->title;
         $item->description = $request->description;
+        $item->short_description = $request->short_description;
         $item->save();
         $last_insereted_id = $item->id;
 

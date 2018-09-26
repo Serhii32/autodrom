@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBlogArticleServiceRequest extends FormRequest
+class StoreBlogRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class StoreBlogArticleServiceRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
+            'short_description' => 'max:1000',
             'main_photo' => 'mimetypes:image/jpeg,image/png,image/jpg,image/gif|max:20000',
             'category' => 'integer|nullable',
         ];

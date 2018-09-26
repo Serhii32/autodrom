@@ -21,6 +21,9 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 <h3>Назва: {{ $item->title }}</h3>
+                                @isset($item->short_description)
+                                    <h4>Короткий опис: {{$item->short_description}}</h4>
+                                @endisset
                             </div>
                         </div>
                         <h3 class="m-3 text-center">Основна частина</h3>
@@ -28,9 +31,9 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6 p-2">
-                                    <a href="{{ route('admin/feedback.edit', $item->id) }}" class="w-100 mb-3 btn btn-warning text-uppercase font-weight-bold">Редагувати</a>
+                                    <a href="{{ route('admin/'.$identificator.'.edit', $item->id) }}" class="w-100 mb-3 btn btn-warning text-uppercase font-weight-bold">Редагувати</a>
                                 </div>
-                                <form class="col-md-6 mb-3 p-2" action="{{ route('admin/feedback.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Підтвердити видалення?');">
+                                <form class="col-md-6 mb-3 p-2" action="{{ route('admin/'.$identificator.'.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Підтвердити видалення?');">
                                     <input type="hidden" name="_method" value="DELETE">
                                     {{ csrf_field() }}
                                     <button class="btn btn-danger w-100 text-uppercase font-weight-bold">Видалити</button>

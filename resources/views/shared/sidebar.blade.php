@@ -1,26 +1,26 @@
 <div class="col-lg-4 col-md-12">
 	<div class="sidebar-area">
-		<div class="sidebar-section about-author center-text">
+		{{-- <div class="sidebar-section about-author center-text">
 			<div class="author-image"><img src="{{asset('img/site/common/BoschService.jpg')}}" alt="Bosch Service"></div>
-			{{-- <ul class="social-icons">
+			<ul class="social-icons">
 				<li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
 				<li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
 				<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
 				<li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
 				<li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
-			</ul><!-- right-area --> --}}
+			</ul><!-- right-area -->
 			<h4 class="author-name"><b class="light-color">Bosch Service</b></h4>
 			<p>Комплексний ремонт Вашего авто</p>
-			{{-- <div class="signature-image"><img src="images/signature-image.png" alt="Signature Image"></div>
-			<a class="read-more-link" href="#"><b>READ MORE</b></a> --}}
+			<div class="signature-image"><img src="images/signature-image.png" alt="Signature Image"></div>
+			<a class="read-more-link" href="#"><b>READ MORE</b></a>
 		</div><!-- sidebar-section about-author -->
-		{{-- <div class="sidebar-section src-area">
+		<div class="sidebar-section src-area">
 			<form action="post">
 				<input class="src-input" type="text" placeholder="Search">
 				<button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
 			</form>
-		</div><!-- sidebar-section src-area --> --}}
-		{{-- <div class="sidebar-section newsletter-area">
+		</div><!-- sidebar-section src-area -->
+		<div class="sidebar-section newsletter-area">
 			<h5 class="title"><b>Subscribe to our newsletter</b></h5>
 			<form action="post">
 				<input class="email-input" type="text" placeholder="Your email here">

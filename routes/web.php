@@ -13,7 +13,14 @@
 
 Route::get('/', ['as' => 'page.index', 'uses' => 'PageController@index']);
 Route::get('blog', ['as' => 'page.blog', 'uses' => 'PageController@blog']);
+Route::get('service', ['as' => 'page.service', 'uses' => 'PageController@service']);
+Route::get('article', ['as' => 'page.article', 'uses' => 'PageController@article']);
+Route::get('feedback', ['as' => 'page.feedback', 'uses' => 'PageController@feedback']);
 Route::get('blog/{id}', ['as' => 'page.blog.item', 'uses' => 'PageController@blog_item']);
+Route::get('service/{id}', ['as' => 'page.service.item', 'uses' => 'PageController@service_item']);
+Route::get('article/{id}', ['as' => 'page.article.item', 'uses' => 'PageController@article_item']);
+Route::get('feedback/{id}', ['as' => 'page.feedback.item', 'uses' => 'PageController@feedback_item']);
+Route::get('category/{id}', ['as' => 'page.category.item', 'uses' => 'PageController@category_item']);
 Route::get('contacts', ['as' => 'page.contacts', 'uses' => 'PageController@contacts']);
 
 Auth::routes();

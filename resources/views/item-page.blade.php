@@ -9,35 +9,29 @@
 					<div class="blog-posts">
 
 						<div class="single-post">
-							<div class="image-wrapper"><img src="{{asset('images/blog-1-1000x600.jpg')}}" alt="Blog Image"></div>
+							<div class="image-wrapper"><img src="{{ $item->main_photo ? asset($item->main_photo) : asset('img/site/common/default.png') }}" alt="{{$item->title}}"></div>
 
-							<div class="icons">
-								<div class="left-area">
-									<a class="btn caegory-btn" href="#"><b>TRAVEL</b></a>
+							@if(method_exists($item, 'category'))
+
+								<div class="icons">
+									<div class="left-area">
+										<a class="btn caegory-btn" href="{{route('page.category.item', $item->category()->first()->id)}}"><b>{{$item->category()->first()->title}}</b></a>
+									</div>
+									{{-- <ul class="right-area social-icons">
+										<li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
+										<li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
+										<li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
+									</ul> --}}
 								</div>
-								<ul class="right-area social-icons">
-									<li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
-									<li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
-									<li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
-								</ul>
-							</div>
-							<p class="date"><em>Monday, October 13, 2017</em></p>
-							<h3 class="title"><a href="#"><b class="light-color">This is post about travel, adventure and fun</b></a></h3>
-							<p class="desc">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-								 laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-								 architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-								 consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
-								dolore magnam aliquam quaerat voluptatem.</p>
 
-							<p class="desc">Eerror sit voluptatem accusantium doloremque
-								 laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-								 architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-								 consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
-								 laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-								 architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-								dolore magnam aliquam quaerat voluptatem.</p>
+							@endif
+							<p class="date">Создано: <em>{{$item->created_at}}</em></p>
+							<h3 class="title  text-center"><b class="light-color">{{$item->title}}</b></h3>
+							<p class="desc text-justify">{{$item->short_description}}</p>
+							<br>
+							<p class="desc">{{$item->description}}</p>
 
-							<h5 class="quoto"><em><i class="ion-quote"></i>Eerror sit voluptatem accusantium doloremque
+							{{-- <h5 class="quoto"><em><i class="ion-quote"></i>Eerror sit voluptatem accusantium doloremque
 								 laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
 								 architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
 								 consectetur, adipisci velit
@@ -51,17 +45,17 @@
 								 consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
 								 laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
 								 architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-								dolore magnam aliquam quaerat voluptatem.</p>
+								dolore magnam aliquam quaerat voluptatem.</p> --}}
 
-							<ul>
+							{{-- <ul>
 								<li><a class="btn" href="#">design</a></li>
 								<li><a class="btn" href="#">fashion</a></li>
-							</ul>
+							</ul> --}}
 
 						</div><!-- single-post -->
 
 
-						<div class="post-author">
+						{{-- <div class="post-author">
 							<div class="author-image"><img src="{{asset('images/author-1-200x200.jpg')}}" alt="Autohr Image"></div>
 
 							<div class="author-info">
@@ -79,9 +73,9 @@
 								</ul><!-- right-area -->
 
 							</div><!-- author-info -->
-						</div><!-- post-author -->
+						</div><!-- post-author --> --}}
 
-						<div class="comments-area">
+						{{-- <div class="comments-area">
 							<h4 class="title"><b class="light-color">2 Comments</b></h4>
 							<div class="comment">
 								<div class="author-image"><img src="{{asset('images/author-2-150x150.jpg')}}" alt="Autohr Image"></div>
@@ -103,9 +97,9 @@
 								</div>
 							</div><!-- comment -->
 
-						</div><!-- comments-area -->
+						</div><!-- comments-area --> --}}
 
-						<div class="leave-comment-area">
+						{{-- <div class="leave-comment-area">
 							<h4 class="title"><b class="light-color">Leave a comment</b></h4>
 							<div class="leave-comment">
 
@@ -132,7 +126,7 @@
 
 							</div><!-- leave-comment -->
 
-						</div><!-- comments-area -->
+						</div><!-- comments-area --> --}}
 
 					</div><!-- blog-posts -->
 				</div><!-- col-lg-4 -->

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Blog;
 use App\Category;
-use App\Http\Requests\StoreBlogArticleServiceRequest;
+use App\Http\Requests\StoreBlogRequest;
 use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
@@ -16,17 +16,11 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $identificator;
-
-    public function __construct() 
-    {
-        $this->identificator = 'blog';
-    }
 
     public function index()
     {
         $items = Blog::paginate(12);
-        return view('admin.blog_article_service.index', compact(['items']), ['identificator' => $this->identificator]);
+        return view('admin.blog.blog-index', compact(['items']));
     }
 
     /**
@@ -37,7 +31,7 @@ class BlogController extends Controller
     public function create()
     {
         $categories = Category::pluck('title','id')->all();
-        return view('admin.blog_article_service.create', compact(['categories']), ['identificator' => $this->identificator]);
+        return view('admin.blog.blog-create', compact(['categories']));
     }
 
     /**
@@ -46,11 +40,12 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlogArticleServiceRequest $request)
+    public function store(StoreBlogRequest $request)
     {
         $item = new Blog();
         $item->title = $request->title;
         $item->description = $request->description;
+        $item->short_description = $request->short_description;
         $item->category_id = $request->category;
         $item->save();
         $last_insereted_id = $item->id;
@@ -70,7 +65,7 @@ class BlogController extends Controller
     public function show(int $id)
     {
         $item = Blog::findOrFail($id);
-        return view('admin.blog_article_service.show', compact(['item']), ['identificator' => $this->identificator]);
+        return view('admin.blog.blog-show', compact(['item']));
     }
 
     /**
@@ -83,7 +78,7 @@ class BlogController extends Controller
     {
         $categories = Category::pluck('title','id')->all();
         $item = Blog::findOrFail($id);
-        return view('admin.blog_article_service.edit', compact(['item', 'categories']), ['identificator' => $this->identificator]);
+        return view('admin.blog.blog-edit', compact(['item', 'categories']));
     }
 
     /**
@@ -93,11 +88,12 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreBlogArticleServiceRequest $request, int $id)
+    public function update(StoreBlogRequest $request, int $id)
     {
         $item = Blog::findOrFail($id);
         $item->title = $request->title;
         $item->description = $request->description;
+        $item->short_description = $request->short_description;
         $item->category_id = $request->category;
         $item->save();
         $last_insereted_id = $item->id;

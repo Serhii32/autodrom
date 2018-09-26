@@ -66,26 +66,25 @@
 			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
 			<ul class="main-menu visible-on-click" id="main-menu">
-				<li {{-- class="drop-down" --}}><a href="#!">УСЛУГИ{{-- <i class="ion-ios-arrow-down"></i> --}}</a>
+				@if(count($serviceTitles))
+					<li class="drop-down"><a href="{{route('page.service')}}">УСЛУГИ<i class="ion-ios-arrow-down"></i></a>
+						<ul class="drop-down-menu">
+							@foreach($serviceTitles as $serviceTitle)
+								<li><a href="{{route('page.service.item', $serviceTitle['id'])}}">{{$serviceTitle['title']}}</a></li>
+							@endforeach
 
-					{{-- <ul class="drop-down-menu">
-						<li><a href="#">ПРОГРАММИРОВАНИЕ ЕБУ</a></li>
-						<li><a href="#">ПРОГРАММИРОВАНИЕ</a></li>
-						<li class="drop-down"><a href="#!">УДАЛЕНИЕ САЖЕВОГО ФИЛЬТРА DPF/FOP<i class="ion-ios-arrow-right"></i></a>
-							<ul class="drop-down-menu drop-down-inner">
-								<li><a href="#">FEATURED</a></li>
-								<li><a href="#">ABOUT</a></li>
-								<li><a href="#">CATEGORIES</a></li>
-							</ul>
-						</li>
-						<li><a href="#">ОТКЛЮЧЕНИЕ СИСТЕМЫ РЕЦИРКУЛЯЦИИ ВЫХЛОПНЫХ ГАЗОВ (КЛАПАН EGR)</a></li>
-						<li><a href="#">УВЕЛИЧЕНИЕ МОЩНОСТИ</a></li>
-						<li><a href="#">ОТКЛЮЧЕНИЕ КАТАЛИЗАТОРА</a></li>
-						<li><a href="#">ОТКЛЮЧЕНИЕ СИСТЕМЫ ADBLUE</a></li>
-					</ul> --}}
-
-				</li>
-				<li><a href="#">СТАТЬИ</a></li>
+							
+							<li><a href="#">ПРОГРАММИРОВАНИЕ</a></li>
+							<li><a href="#">ОТКЛЮЧЕНИЕ СИСТЕМЫ РЕЦИРКУЛЯЦИИ ВЫХЛОПНЫХ ГАЗОВ (КЛАПАН EGR)</a></li>
+							<li><a href="#">УВЕЛИЧЕНИЕ МОЩНОСТИ</a></li>
+							<li><a href="#">ОТКЛЮЧЕНИЕ КАТАЛИЗАТОРА</a></li>
+							<li><a href="#">ОТКЛЮЧЕНИЕ СИСТЕМЫ ADBLUE</a></li>
+						</ul>
+					</li>
+				@else
+					<li><a href="{{route('page.service')}}">УСЛУГИ</a>
+				@endif
+				<li><a href="{{route('page.article')}}">СТАТЬИ</a></li>
 				<li><a href="{{route('page.blog')}}">НОВОСТИ</a></li>
 				<li><a href="{{route('page.contacts')}}">КОНТАКТЫ</a></li>
 			</ul><!-- main-menu -->

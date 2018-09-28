@@ -1,7 +1,7 @@
 @extends('shared.master')
 
 @section('content')
-	<section class="blog-area" style="margin-top: 265px;">
+	<section class="blog-area empty-space">
 		<div class="container">
 			<div class="row">
 
@@ -9,7 +9,7 @@
 					<div class="blog-posts">
 
 						<div class="single-post">
-							<div class="image-wrapper"><img src="{{ $item->main_photo ? asset($item->main_photo) : asset('img/site/common/default.png') }}" alt="{{$item->title}}"></div>
+							{{-- <div class="image-wrapper"><img src="{{ $item->main_photo ? asset($item->main_photo) : asset('img/site/common/default.png') }}" alt="{{$item->title}}"></div> --}}
 
 							@if(method_exists($item, 'category'))
 
@@ -25,7 +25,7 @@
 								</div>
 
 							@endif
-							<p class="date">Создано: <em>{{$item->created_at}}</em></p>
+							<p class="date"><em>{{$item->created_at}}</em></p>
 							<h3 class="title  text-center"><b class="light-color">{{$item->title}}</b></h3>
 							<p class="desc text-justify">{{$item->short_description}}</p>
 							<br>

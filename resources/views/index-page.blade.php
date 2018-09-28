@@ -1,33 +1,7 @@
 @extends('shared.master')
 
 @section('content')
-	<div class="main-slider">
-		<div id="slider">
-
-			<div class="ls-slide" data-ls="bgsize:cover; bgposition:50% 50%; duration:4000; transition2d:104; kenburnsscale:1.00;">
-				<img src="{{asset('img/site/index/slider1.jpg')}}" class="ls-bg" alt="" />
-
-					<div class="slider-content ls-l" style="top:60%; left:30%;" data-ls="offsetyin:100%; offsetxout:-50%; durationin:800; delayin:100; durationout:400; parallaxlevel:0;">
-						<a class="btn" href="#">TRAVEL</a>
-						<h3 class="title"><b>Travel, Love, Live</b></h3>
-						<h6>29 October, 2017</h6>
-					</div>
-
-			</div><!-- ls-slide -->
-
-			<div class="ls-slide" data-ls="bgsize:cover; bgposition:50% 50%; duration:4000; transition2d:104; kenburnsscale:1.00;">
-				<img src="{{asset('img/site/index/slider2.jpg')}}" class="ls-bg" alt="" />
-
-					<div class="slider-content ls-l" style="top:60%; left:30%;" data-ls="offsetyin:100%; offsetxout:-50%; durationin:800; delayin:100; durationout:400; parallaxlevel:0;">
-						<a class="btn" href="#">TRAVEL</a>
-						<h3 class="title"><b>Travel, Love, Live</b></h3>
-						<h6>29 October, 2017</h6>
-					</div>
-
-			</div><!-- ls-slide -->
-
-		</div><!-- slider -->
-	</div><!-- main-slider -->
+	<div class="empty-slider"></div>
 
 	<section class="section blog-area">
 		<div class="container">
@@ -40,9 +14,9 @@
 						<div class="row mb-5" style="justify-content: center;">
 							<div class="col-12">
 								<h4 class="title mb-2 text-center"><b class="light-color">Вы узнаете на что способен Ваш автомобиль!</b></h4>
-								<div class="col-md-10 m-auto">
+								{{-- <div class="col-md-10 m-auto">
 									<img class="img-fluid rounded" src="{{asset('img/site/index/tuning.jpg')}}">
-								</div>	
+								</div> --}}	
 	        					<h4 class="title text-center mt-4 mb-4 mx-auto" style="font-size: 16px;"><b class="light-color">Мы предлагаем эффективное увеличение мощности автомобиля, отключение систем <strong>DPF, EGR, AdBlue</strong></b></h4>
 							</div>
 						</div>
@@ -52,10 +26,12 @@
 								<div class="row justify-content-center">
 									@foreach($serviceItems as $serviceItem)
 
-										<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
-											<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
-								    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{ $serviceItem->main_photo ? asset($serviceItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$serviceItem->title}}">
-								  				<div class="card-body text-center">
+										<div class="col-12 mb-2">
+											<div class="rounded row" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2);">
+												<div class="col-4">
+													<img class="p-3" style="height: 150px; width: auto; object-fit: contain;" src="{{ $serviceItem->main_photo ? asset($serviceItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$serviceItem->title}}">
+												</div>
+								  				<div class="text-center col-8 p-4">
 								    				<h5 class="card-title"><a href="{{route('page.service.item', $serviceItem->id)}}"><strong>{{$serviceItem->title}}</strong></a></h5>
 								    				<p class="card-text p-2" style="font-size: 12px;">{{$serviceItem->short_description}}</p>
 								  				</div>
@@ -63,7 +39,7 @@
 										</div>
 
 									@endforeach
-									<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+								{{-- 	<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
 										<div class="card rounded" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2); height: 100%;">
 							    			<img class="card-img-top p-2" style="height: 50%; object-fit: contain;" src="{{asset('img/site/index/dpf.jpg')}}" alt="Card image cap">
 							  				<div class="card-body text-center">
@@ -107,22 +83,65 @@
 							    				<p class="card-text p-2" style="font-size: 12px;">Автомобиль будет экономнее. Вам не нужно тратится на реагенты.</p>
 							  				</div>
 										</div>
-									</div>
+									</div> --}}
 								</div>
 							</div>
 						@endif
-						<h3 class="title mb-2 text-center"><b class="light-color">Обращаясь в BOSH Service АвтоДром Вы получаете гарантировано высокий уровень обслуживания!!!</b></h3>
+						<h3 class="title mb-2 mt-3 text-center"><b class="light-color">Обращаясь в BOSH Service АвтоДром Вы получаете гарантировано высокий уровень обслуживания!!!</b></h3>
 						<div class="row mb-5" style="justify-content: center;">
 							<div class="col-md-3 m-auto">
 								<img class="img-fluid rounded" src="{{asset('img/site/index/WRB_215.jpg')}}">
 							</div>	
-	        				<h4 class="title text-justify mt-4 mb-4 mx-auto col-md-6" style="font-size: 16px;"><b class="light-color">Мы используем лицензионное оборудование и программное обеспечение Работы по чип-тюнингу выполняются опытными квалифицированными специалистами с большим опытом работы. Перед началом работ проводится бесплатная диагностика. Мы не «чипуем» неисправные авто! Мы предоставляем гарантию на наши услуги.</b></h4>
+	        				<h4 class="title text-justify mt-4 mb-4 mx-auto col-md-6" style="font-size: 16px;"><b class="light-color">
+	        				— Мы используем лицензионное оборудование и программное обеспечение<br>
+	        				— Работы по чип-тюнингу выполняются опытными квалифицированными специалистами с большим опытом работы<br>
+	        				— Перед началом работ проводится бесплатная диагностика<br>
+	        				— Мы не «чипуем» неисправные авто!<br>
+	        				— Мы предоставляем гарантию на наши услуги.</b></h4>
 	        				<div class="col-md-3 m-auto">
 								<img class="img-fluid rounded" src="{{asset('img/site/index/comp.jpg')}}">
 							</div>
 						</div>
+
+						@if(count($feedbackItems))
+							<link href="{{asset('/css/flickity.min.css')}}" rel="stylesheet">
+							<script src="{{asset('/js/flickity.pkgd.min.js')}}"></script>
+							<style>
+								.carousel {
+								  background: #FAFAFA;
+								}
+
+								.carousel-cell {
+								  width: 66%;
+								  height: 400px;
+								  margin-right: 10px;
+								  background: #333;
+								}
+
+								.carousel-cell-image {
+								  display: block;
+								  max-height: 100%;
+								  margin: 0 auto;
+								  max-width: 100%;
+								  opacity: 0;
+								  -webkit-transition: opacity 0.4s;
+								          transition: opacity 0.4s;
+								}
+
+								/* fade in lazy loaded image */
+								.carousel-cell-image.flickity-lazyloaded,
+								.carousel-cell-image.flickity-lazyerror {
+								  opacity: 1;
+								}
+							</style>
+							<div class="main-carousel" data-flickity='{ "imagesLoaded": true, "percentPosition": false }'>
+							  <div class="carousel-cell"><img src="{{ asset('img/site/common/default.png') }}">asa</div>
+							  <div class="carousel-cell"><img src="{{ asset('img/site/common/default.png') }}">asa</div>
+							  <div class="carousel-cell"><img src="{{ asset('img/site/common/default.png') }}">asa</div>
+							</div>
+						@endif
 						
-						<style>
+						{{-- <style>
 						/* Slideshow container */
 						.slideshow-container {
 						  max-width: 1000px;
@@ -270,7 +289,7 @@
 						</script>
 
 						@endif
-
+ --}}
 					</div><!-- blog-posts -->
 				</div><!-- col-lg-4 -->
 			</div><!-- row -->

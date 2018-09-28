@@ -22,6 +22,7 @@ Route::get('article/{id}', ['as' => 'page.article.item', 'uses' => 'PageControll
 Route::get('feedback/{id}', ['as' => 'page.feedback.item', 'uses' => 'PageController@feedback_item']);
 Route::get('category/{id}', ['as' => 'page.category.item', 'uses' => 'PageController@category_item']);
 Route::get('contacts', ['as' => 'page.contacts', 'uses' => 'PageController@contacts']);
+Route::post('mail/send', ['as' => 'mail.send', 'uses' => 'MailController@send']);
 
 Auth::routes();
 

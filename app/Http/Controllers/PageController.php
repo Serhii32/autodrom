@@ -8,12 +8,17 @@ use App\Feedback;
 use App\Article;
 use App\Blog;
 use App\Category;
+use Mapper;
 
 class PageController extends Controller
 {
 
     private $serviceItems;
     private $serviceTitles;
+    private $blogCategories;
+    private $blogTitlesCategories;
+    private $blogItems;
+    private $map;
 
     public function __construct()
     {
@@ -21,40 +26,46 @@ class PageController extends Controller
         $this->serviceTitles = $this->serviceItems->map(function ($serviceTitle) {
             return $serviceTitle->only(['id','title']);
         });
+        $this->blogCategories = Category::all();
+        $this->blogTitlesCategories = $this->blogCategories->map(function ($blogTitleCategory) {
+            return $blogTitleCategory->only(['id','title']);
+        });
+        $this->blogItems = Blog::orderBy('created_at', 'desc')->take(5)->get();
+        $this->map = Mapper::map(49.233185, 28.407826, ['zoom' => 10, 'center' => false]);
     }
 
     public function index() 
     {
         $feedbackItems = Feedback::all();
-    	return view('index-page', compact('feedbackItems'), ['serviceItems' => $this->serviceItems, 'serviceTitles' => $this->serviceTitles]);
+    	return view('index-page', compact('feedbackItems'), ['serviceItems' => $this->serviceItems, 'serviceTitles' => $this->serviceTitles, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
     public function blog() 
     {
         $identificator = 'blog';
         $items = Blog::paginate(6);
-    	return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles]);
+    	return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
     public function service() 
     {
         $identificator = 'service';
         $items = Service::paginate(6);
-        return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles]);
+        return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
     public function article() 
     {
         $identificator = 'article';
         $items = Article::paginate(6);
-        return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles]);
+        return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
     
     public function feedback()
     {
         $identificator = 'feedback';
         $items = Feedback::paginate(6);
-        return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles]);
+        return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
     public function category_item(int $id) 
@@ -63,35 +74,35 @@ class PageController extends Controller
         $category = Category::findOrFail($id);
         $items = $category->blog()->paginate(6);
         $childs = $category->childs()->get();
-        return view('items-page', compact(['items', 'childs', 'identificator']), ['serviceTitles' => $this->serviceTitles]);
+        return view('items-page', compact(['items', 'childs', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
     public function blog_item(int $id) 
     {
         $item = Blog::findOrFail($id);
-        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles]);
+        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
     public function service_item(int $id) 
     {
         $item = Service::findOrFail($id);
-        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles]);
+        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
     public function article_item(int $id) 
     {
         $item = Article::findOrFail($id);
-        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles]);
+        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
     public function feedback_item(int $id) 
     {
         $item = Feedback::findOrFail($id);
-        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles]);
+        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
     public function contacts() 
     {
-    	return view('contacts-page', ['serviceTitles' => $this->serviceTitles]);
+    	return view('contacts-page', ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 }

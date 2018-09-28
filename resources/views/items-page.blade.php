@@ -1,7 +1,7 @@
 @extends('shared.master')
 
 @section('content')
-	<section class="section blog-area" style="margin-top: 265px;">
+	<section class="section blog-area empty-space">
 		<div class="container">
 			<div class="row">
 
@@ -99,7 +99,7 @@
 
 										@endif
 
-										<h6 class="date">Создано: <em>{{$item->created_at}}</em></h6>
+										<h6 class="date"><em>{{$item->created_at}}</em></h6>
 										<h3 class="title text-center"><a href="{{route('page.'.$identificator.'.item', $item->id)}}"><b class="light-color">{{$item->title}}</b></a></h3>
 										<p>{{$item->short_description}}</p>
 										<a class="btn read-more-btn" href="{{route('page.'.$identificator.'.item', $item->id)}}"><b>Подробнее</b></a>

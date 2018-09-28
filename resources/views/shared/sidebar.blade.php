@@ -49,16 +49,18 @@
 		</div><!-- sidebar-section category-area --> --}}
 
 		<div class="sidebar-section latest-post-area">
-			<h4 class="title"><b class="light-color">Latest Posts</b></h4>
-			<div class="latest-post" href="#">
-				<div class="l-post-image"><img src="{{asset('images/recent-post-1-150x200.jpg')}}" alt="Category Image"></div>
-				<div class="post-info">
-					<a class="btn category-btn" href="#">TRAVEL</a>
-					<h5><a href="#"><b class="light-color">One more night in the clubs</b></a></h5>
-					<h6 class="date"><em>Monday, October 13, 2017</em></h6>
+			<h4 class="title"><b class="light-color">Последние новости</b></h4>
+			@foreach($blogItems as $blogItem)
+				<div class="latest-post">
+					<div class="l-post-image"><img src="{{ $blogItem->main_photo ? asset($blogItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$blogItem->title}}"></div>
+					<div class="post-info">
+						<a class="btn category-btn" href="{{route('page.category.item', $blogItem->category()->first()->id)}}">{{$blogItem->category()->first()->title}}</a>
+						<h5><a href="{{route('page.blog.item', $blogItem->id)}}"><b class="light-color">{{$blogItem->title}}</b></a></h5>
+						<h6 class="date"><em>{{$blogItem->created_at}}</em></h6>
+					</div>
 				</div>
-			</div>
-			<div class="latest-post" href="#">
+			@endforeach
+			{{-- <div class="latest-post" href="#">
 				<div class="l-post-image"><img src="{{asset('images/recent-post-2-150x200.jpg')}}" alt="Category Image"></div>
 				<div class="post-info">
 					<a class="btn category-btn" href="#">TRAVEL</a>
@@ -81,7 +83,7 @@
 					<h5><a href="#"><b class="light-color">Smile 10 times a day</b></a></h5>
 					<h6 class="date"><em>Monday, October 13, 2017</em></h6>
 				</div>
-			</div>
+			</div> --}}
 		</div><!-- sidebar-section latest-post-area -->
 
 		{{-- <div class="sidebar-section advertisement-area">

@@ -117,7 +117,21 @@
 	4. SLIDER
 	--------------------------------- */
 
-	.main-slider{ margin-top: 205px; height: calc(400px - 205px); min-height: 350px; }  
+	.main-slider{ 
+		/*margin-top: 205px; */
+		height: calc(400px - 205px); 
+		min-height: 350px; 
+	} 
+
+	.empty-slider{ 
+		margin-top: 800px; 
+		height: calc(400px - 205px); 
+		min-height: 350px; 
+	}  
+
+	.empty-space{
+		margin-top: 1350px;
+	}
 	 
 	.main-slider .slider-content{ padding: 15px 20px!important; margin-left: 20px!important; 
 		top: 30px!important; }

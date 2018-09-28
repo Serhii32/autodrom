@@ -1,8 +1,7 @@
 @extends('shared.master')
 
 @section('content')
-
-	<section class="blog-area" style="margin-top: 265px;">
+	<section class="blog-area empty-space">
 		<div class="container">
 			<div class="row">
 

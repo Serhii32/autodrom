@@ -128,17 +128,27 @@
 								          transition: opacity 0.4s;
 								}
 
+								.flickity-viewport {
+									height: 500px !important;
+								}
+
 								/* fade in lazy loaded image */
 								.carousel-cell-image.flickity-lazyloaded,
 								.carousel-cell-image.flickity-lazyerror {
 								  opacity: 1;
 								}
 							</style>
+							
 							<div class="main-carousel" data-flickity='{ "imagesLoaded": true, "percentPosition": false }'>
-							  <div class="carousel-cell"><img src="{{ asset('img/site/common/default.png') }}">asa</div>
-							  <div class="carousel-cell"><img src="{{ asset('img/site/common/default.png') }}">asa</div>
-							  <div class="carousel-cell"><img src="{{ asset('img/site/common/default.png') }}">asa</div>
+							@foreach($feedbackItems as $feedbackItem)
+							  <div class="carousel-cell" style="background: transparent;">
+							  	<img style="display: block; margin: auto; height: 280px; width: 100%; object-fit: cover;" src="{{ $feedbackItem->main_photo ? asset($feedbackItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$feedbackItem->title}}">
+							  	<h3 style="text-align: center;">{{$feedbackItem->title}}</h3>
+							  	<p style="text-align: justify; font-size: 15px;">{{$feedbackItem->short_description}}</p>
+							  </div>
+							 @endforeach
 							</div>
+							
 						@endif
 						
 						{{-- <style>

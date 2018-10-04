@@ -29,7 +29,7 @@
 							<h3 class="title  text-center"><b class="light-color">{{$item->title}}</b></h3>
 							<p class="desc text-justify">{{$item->short_description}}</p>
 							<br>
-							<p class="desc">{{$item->description}}</p>
+							<p class="desc">{!!$item->description!!}</p>
 
 							{{-- <h5 class="quoto"><em><i class="ion-quote"></i>Eerror sit voluptatem accusantium doloremque
 								 laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi

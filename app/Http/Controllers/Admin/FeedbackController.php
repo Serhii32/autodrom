@@ -123,6 +123,6 @@ class FeedbackController extends Controller
         Storage::disk('local')->deleteDirectory('img/site/feedback/' . $id);
         $item = Feedback::findOrFail($id);
         $item->delete();
-        return redirect()->route('admin/article.index')->with(['message' => 'Відгук успішно видалений']);
+        return redirect()->route('admin/feedback.index')->with(['message' => 'Відгук успішно видалений']);
     }
 }

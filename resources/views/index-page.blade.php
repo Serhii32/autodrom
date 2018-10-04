@@ -27,15 +27,17 @@
 									@foreach($serviceItems as $serviceItem)
 
 										<div class="col-12 mb-2">
-											<div class="rounded row" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2);">
-												<div class="col-4">
-													<img class="p-3" style="height: 150px; width: auto; object-fit: contain;" src="{{ $serviceItem->main_photo ? asset($serviceItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$serviceItem->title}}">
+											<a style="display: block;" href="{{route('page.service.item', $serviceItem->id)}}">
+												<div class="rounded row" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2);">
+													<div class="col-12 col-md-4 text-center">
+														<img class="p-3" style="height: 150px; width: auto; object-fit: contain;" src="{{ $serviceItem->main_photo ? asset($serviceItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$serviceItem->title}}">
+													</div>
+									  				<div class="text-center col-12 col-md-8 p-4">
+									    				<h5 class="card-title"><strong>{{$serviceItem->title}}</strong></h5>
+									    				<p class="card-text p-2" style="font-size: 12px;">{{$serviceItem->short_description}}</p>
+									  				</div>
 												</div>
-								  				<div class="text-center col-8 p-4">
-								    				<h5 class="card-title"><a href="{{route('page.service.item', $serviceItem->id)}}"><strong>{{$serviceItem->title}}</strong></a></h5>
-								    				<p class="card-text p-2" style="font-size: 12px;">{{$serviceItem->short_description}}</p>
-								  				</div>
-											</div>
+											</a>
 										</div>
 
 									@endforeach
@@ -118,6 +120,16 @@
 								  background: #333;
 								}
 
+								@media(max-width: 700px)
+								{
+									.carousel-cell {
+									  width: 100%!important;
+									  height: 400px;
+									  margin-right: 10px;
+									  background: #333;
+									}
+								}
+
 								.carousel-cell-image {
 								  display: block;
 								  max-height: 100%;
@@ -129,7 +141,7 @@
 								}
 
 								.flickity-viewport {
-									height: 500px !important;
+									height: 685px !important;
 								}
 
 								/* fade in lazy loaded image */
@@ -138,13 +150,15 @@
 								  opacity: 1;
 								}
 							</style>
-							
-							<div class="main-carousel" data-flickity='{ "imagesLoaded": true, "percentPosition": false }'>
+							<h3 class="text-center m-3">Наши работы</h3>
+							<div class="main-carousel" data-flickity='{ "imagesLoaded": true, "percentPosition": false, "autoPlay": 2000, "groupCells": true }'>
 							@foreach($feedbackItems as $feedbackItem)
-							  <div class="carousel-cell" style="background: transparent;">
-							  	<img style="display: block; margin: auto; height: 280px; width: 100%; object-fit: cover;" src="{{ $feedbackItem->main_photo ? asset($feedbackItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$feedbackItem->title}}">
-							  	<h3 style="text-align: center;">{{$feedbackItem->title}}</h3>
-							  	<p style="text-align: justify; font-size: 15px;">{{$feedbackItem->short_description}}</p>
+							  <div class="carousel-cell" style="background: transparent; width: 40%;">
+							  	<a href="{{route('page.feedback.item', $feedbackItem->id)}}">
+								  	<img style="display: block; margin: auto; height: 480px; /*width: 100%;*/ object-fit: cover;" src="{{ $feedbackItem->main_photo ? asset($feedbackItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$feedbackItem->title}}">
+								  	<h3 style="text-align: center;">{{$feedbackItem->title}}</h3>
+								  	<p style="text-align: center; font-size: 15px;">{{$feedbackItem->short_description}}</p>
+							  </a>
 							  </div>
 							 @endforeach
 							</div>

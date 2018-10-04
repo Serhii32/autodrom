@@ -54,7 +54,7 @@
 				<div class="latest-post">
 					<div class="l-post-image"><img src="{{ $blogItem->main_photo ? asset($blogItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$blogItem->title}}"></div>
 					<div class="post-info">
-						<a class="btn category-btn" href="{{route('page.category.item', $blogItem->category()->first()->id)}}">{{$blogItem->category()->first()->title}}</a>
+						@if($blogItem->category()->first())<a class="btn category-btn" href="{{route('page.category.item', $blogItem->category()->first()->id)}}">{{$blogItem->category()->first()->title}}</a>@endif
 						<h5><a href="{{route('page.blog.item', $blogItem->id)}}"><b class="light-color">{{$blogItem->title}}</b></a></h5>
 						<h6 class="date"><em>{{$blogItem->created_at}}</em></h6>
 					</div>

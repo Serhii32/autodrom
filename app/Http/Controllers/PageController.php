@@ -8,7 +8,6 @@ use App\Feedback;
 use App\Article;
 use App\Blog;
 use App\Category;
-use Mapper;
 
 class PageController extends Controller
 {
@@ -18,7 +17,6 @@ class PageController extends Controller
     private $blogCategories;
     private $blogTitlesCategories;
     private $blogItems;
-    private $map;
 
     public function __construct()
     {
@@ -31,12 +29,11 @@ class PageController extends Controller
             return $blogTitleCategory->only(['id','title']);
         });
         $this->blogItems = Blog::orderBy('created_at', 'desc')->take(5)->get();
-        $this->map = Mapper::map(49.233185, 28.407826, ['zoom' => 10, 'center' => false]);
     }
 
     public function index() 
     {
-        $feedbackItems = Feedback::all();
+        $feedbackItems = Feedback::orderBy('created_at', 'desc')->get()->take(10);
     	return view('index-page', compact('feedbackItems'), ['serviceItems' => $this->serviceItems, 'serviceTitles' => $this->serviceTitles, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 

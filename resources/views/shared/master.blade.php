@@ -28,12 +28,16 @@
 </head>
 <body>
 	@auth <a style="position: fixed; bottom: 0px; right: 0px; font-size: 30px; z-index: 100; font-style: normal; font-weight: 800;" class="btn btn-danger" href="{{route('admin/home.index')}}">Адмінка</a> @endauth
-	<header>
+	<header id="main-header">
 
 		<div class="top-menu">
 
-			<ul class="left-area">
-				<li style="padding-left: 10px;"><a href="tel:+380672690360">(067)269-03-60</a> &nbsp; <a href="tel:+380960788080">(096)078-80-80</a> &nbsp; <a href="tel:+380930788080">(093)078-80-80</a></li>
+			<div class="left-area">
+				<a style="font-size: 18px; padding: 8px; font-style: normal; font-weight: 800;" class="btn btn-danger" href="#footer_form">Оставить заявку</a>
+			</div>
+
+			<ul class="right-area">
+				<li style="padding-right: 10px;"><a href="tel:+380672690360">(067)269-03-60</a> &nbsp; <a href="tel:+380960788080">(096)078-80-80</a> &nbsp; <a href="tel:+380930788080">(093)078-80-80</a></li>
 			</ul><!-- left-area -->
 
 			{{-- <div class="right-area">
@@ -117,16 +121,17 @@
 			</div><!-- main-slider -->
 
 			{{-- <h3 class="col-6 col-md-4 my-auto" style="font-size: 1.2rem;">Чип тюнинг вашего авто</h3> --}}
-			<a class="col-8 col-md-2 m-auto" href="{{route('page.index')}}" class="logo">
+			<a class="col-8 col-md-2 m-auto" href="http://autodrom-service.com.ua/" class="logo" target="_blank">
 				<img {{-- style="max-width: 120px;" --}} src="{{asset('img/site/common/BoschService.jpg')}}" alt="Bosch Service">
 			</a>
 		</div>
 
-		<div class="bottom-area">
+		<div id="scrollmenu" class="bottom-area" style="background: #e9eef1">
 
 			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
 			<ul class="main-menu visible-on-click" id="main-menu">
+				<a id="menu-request-button" style="display: none; float: left; margin: 10px 0px 0px 20px; font-size: 18px; padding: 8px; font-style: normal; font-weight: 800;" class="btn btn-danger" href="#footer_form">Оставить заявку</a>
 				@if(count($serviceTitles))
 					<li class="drop-down"><a href="{{route('page.service')}}">УСЛУГИ<i class="ion-ios-arrow-down"></i></a>
 						<ul class="drop-down-menu">
@@ -158,10 +163,20 @@
 					<li><a href="{{route('page.blog')}}">НОВОСТИ</a></li>
 				@endif
 				<li><a href="{{route('page.contacts')}}">КОНТАКТЫ</a></li>
+				<li id="menu-number-1" style="float: right; display: none;"><a href="tel:+380672690360">(067)269-03-60</a></li>
+				<li id="menu-number-2" style="float: right; display: none;"><a href="tel:+380960788080">(096)078-80-80</a></li>
 			</ul><!-- main-menu -->
 
 		</div><!-- conatiner -->
+		<style>
+			@media only screen and (max-width: 770px) {
+				#menu-request-button {
+				    display: none !important;
+				}
+			}
+		</style>
 	</header>
+
 	@yield('content')
 	{{-- <section class="footer-instagram-area">
 
@@ -189,7 +204,7 @@
 		<div class="container">
 			<div class="row">
 
-				<div class="col-12 col-sm-6">
+				<div class="col-12 col-sm-6" id="footer_form">
 					{{-- <div class="footer-section"> --}}
 						@if(session('mailmessage'))
 							<div class="alert alert-info">
@@ -248,6 +263,35 @@
 	<script src="{{asset('common-js/layerslider.js')}}"></script>
 
 	<script src="{{asset('common-js/scripts.js')}}"></script>
+
+	<script>
+		// $(window).bind('scroll', function() {
+		//      if ($(window).scrollTop() > 500) {
+		//          $('#scrollmenu').css("position" : "fixed", "display" : "block", "width" : "100%");
+		//      }
+		//      else {
+		//          $('#scrollmenu').hide();
+		//      }
+		// });
+
+		var scrollmenu = $("#scrollmenu");
+		var menu_request_button = $("#menu-request-button");
+		var menu_number_1 = $("#menu-number-1");
+		var menu_number_2 = $("#menu-number-2");
+		$(document).scroll(function(e) {
+		    if($(this).scrollTop() > $("#main-header").height()) {
+		        scrollmenu.css({"position" : "fixed", "top" : "0", "display" : "block", "width" : "100%", "background" : "#e9eef1"});
+		        menu_request_button.show();
+		        menu_number_1.show();
+		        menu_number_2.show();
+		    } else {
+		        scrollmenu.css("position", "relative");
+		        menu_request_button.hide();
+		        menu_number_1.hide();
+		        menu_number_2.hide();
+		    }
+		});
+	</script>
 
 </body>
 </html>

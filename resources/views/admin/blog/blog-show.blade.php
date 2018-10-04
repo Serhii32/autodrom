@@ -32,7 +32,7 @@
                         <h3 class="m-3 text-center">Основна частина</h3>
                         <div class="main_part_of_article">{!! $item->description !!}</div>
                         <div class="container-fluid">
-                            <div class="row">
+                            <div class="row" style="width: 100%">
                                 <div class="col-md-6 p-2">
                                     <a href="{{ route('admin/blog.edit', $item->id) }}" class="w-100 mb-3 btn btn-warning text-uppercase font-weight-bold">Редагувати</a>
                                 </div>

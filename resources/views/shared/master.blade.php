@@ -129,6 +129,7 @@
 				<li id="menu-number-1" style="float: right;"><a style="padding: 0 5px; font-size: 17px;" href="tel:+380432558080">(0432)55-80-80</a></li>
 				<li id="menu-number-2" style="float: right;"><a style="padding: 0 5px; font-size: 17px;" href="tel:+380960788080">(096)078-80-80</a></li>
 				<li id="menu-number-3" style="float: right;"><a style="padding: 0 5px; font-size: 17px;" href="tel:+380930788080">(093)078-80-80</a></li>
+
 			</ul><!-- main-menu -->
 
 		</div><!-- conatiner -->
@@ -148,6 +149,7 @@
 			<div class="row">
 
 				<div class="col-12 col-sm-6" id="footer_form">
+
 						@if(session('mailmessage'))
 							<div class="alert alert-info">
 								<h4 class="text-center">{{session('mailmessage')}}</h4>
@@ -207,6 +209,7 @@
 		        scrollmenu.css({"position" : "fixed", "top" : "0", "display" : "block", "width" : "100%", "background" : "#e9eef1"});
 		    } else {
 		        scrollmenu.css("position", "relative");
+
 		    }
 		});
 	</script>

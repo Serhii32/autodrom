@@ -18,7 +18,6 @@
 	        					<h4 class="title text-center mt-4 mb-4 mx-auto" style="font-size: 16px;"><b class="light-color">Мы предлагаем эффективное увеличение мощности автомобиля, отключение систем <strong>DPF, EGR, AdBlue</strong></b></h4>
 							</div>
 						</div>
-
 						<div class="row">
 							<div class="col-12 col-lg-4">
 								@if(count($actionItems))
@@ -126,6 +125,16 @@
 								  background: #333;
 								}
 								
+								@media(max-width: 700px)
+								{
+									.carousel-cell {
+									  width: 100%!important;
+									  height: 400px;
+									  margin-right: 10px;
+									  background: #333;
+									}
+								}
+
 								@media(max-width: 700px)
 								{
 									.carousel-cell {

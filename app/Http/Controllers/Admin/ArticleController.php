@@ -50,6 +50,9 @@ class ArticleController extends Controller
         $item->title = $request->title;
         $item->description = $request->description;
         $item->short_description = $request->short_description;
+        $item->titleSEO = $request->titleSEO;
+        $item->descriptionSEO = $request->descriptionSEO;
+        $item->keywordsSEO = $request->keywordsSEO;
         $item->save();
         $last_insereted_id = $item->id;
         if ($request->main_photo != null) {
@@ -96,6 +99,9 @@ class ArticleController extends Controller
         $item->title = $request->title;
         $item->description = $request->description;
         $item->short_description = $request->short_description;
+        $item->titleSEO = $request->titleSEO;
+        $item->descriptionSEO = $request->descriptionSEO;
+        $item->keywordsSEO = $request->keywordsSEO;
         $item->save();
         $last_insereted_id = $item->id;
 

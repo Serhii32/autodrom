@@ -16,8 +16,10 @@ Route::get('blog', ['as' => 'page.blog', 'uses' => 'PageController@blog']);
 Route::get('service', ['as' => 'page.service', 'uses' => 'PageController@service']);
 Route::get('article', ['as' => 'page.article', 'uses' => 'PageController@article']);
 Route::get('feedback', ['as' => 'page.feedback', 'uses' => 'PageController@feedback']);
+Route::get('pro-action', ['as' => 'page.pro-action', 'uses' => 'PageController@proAction']);
 Route::get('blog/{id}', ['as' => 'page.blog.item', 'uses' => 'PageController@blog_item']);
 Route::get('service/{id}', ['as' => 'page.service.item', 'uses' => 'PageController@service_item']);
+Route::get('pro-action/{id}', ['as' => 'page.pro-action.item', 'uses' => 'PageController@proAction_item']);
 Route::get('article/{id}', ['as' => 'page.article.item', 'uses' => 'PageController@article_item']);
 Route::get('feedback/{id}', ['as' => 'page.feedback.item', 'uses' => 'PageController@feedback_item']);
 Route::get('category/{id}', ['as' => 'page.category.item', 'uses' => 'PageController@category_item']);
@@ -40,4 +42,5 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth', 'as' => 'admin/', 
 	Route::resource('feedback', 'FeedbackController');
 	Route::resource('category', 'CategoryController')->except(['create', 'show']);
 	Route::resource('service', 'ServiceController');
+	Route::resource('pro-action', 'ProActionController');
 });

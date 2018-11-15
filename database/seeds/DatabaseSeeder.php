@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ArticleTableSeeder::class);
         $this->call(ServiceTableSeeder::class);
         $this->call(FeedbackTableSeeder::class);
+        $this->call(ProActionTableSeeder::class);
     }
 }

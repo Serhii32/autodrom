@@ -9,10 +9,10 @@
                 <div class="card-body">
                     @if (session('message'))
                         <div class="alert alert-info">
-                            <button type="button" class="close" data-dismiss="alert">×</button> 
+                            <button type="button" class="close" data-dismiss="alert"></button>
                             <strong>{{ session('message') }}</strong>
                         </div>
-                    @endif 
+                    @endif
 
                     <div class="container">
                         <div class="row">
@@ -31,8 +31,14 @@
                         </div>
                         <h3 class="m-3 text-center">Основна частина</h3>
                         <div class="main_part_of_article">{!! $item->description !!}</div>
+                        <h3 class="m-3 text-center">SEO заголовок</h3>
+                        <div class="main_part_of_article">{!! $item->titleSEO !!}</div>
+                        <h3 class="m-3 text-center">Мета описання</h3>
+                        <div class="main_part_of_article">{!! $item->descriptionSEO !!}</div>
+                        <h3 class="m-3 text-center">Ключові слова</h3>
+                        <div class="main_part_of_article">{!! $item->keywordsSEO !!}</div>
                         <div class="container-fluid">
-                            <div class="row">
+                            <div class="row" style="width: 100%">
                                 <div class="col-md-6 p-2">
                                     <a href="{{ route('admin/blog.edit', $item->id) }}" class="w-100 mb-3 btn btn-warning text-uppercase font-weight-bold">Редагувати</a>
                                 </div>

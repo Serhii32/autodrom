@@ -28,6 +28,9 @@ class StoreBlogRequest extends FormRequest
             'short_description' => 'max:1000',
             'main_photo' => 'mimetypes:image/jpeg,image/png,image/jpg,image/gif|max:20000',
             'category' => 'integer|nullable',
+            'titleSEO' => 'max:255',
+            'descriptionSEO' => 'max:1000',
+            'keywordsSEO' => 'max:255',
         ];
     }
 }

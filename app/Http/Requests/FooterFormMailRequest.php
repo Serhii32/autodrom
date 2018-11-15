@@ -28,4 +28,10 @@ class FooterFormMailRequest extends FormRequest
             'tel' => 'required|numeric',
         ];
     }
+	
+	protected function getRedirectUrl()
+	{
+		$url = $this->redirector->getUrlGenerator();
+		return $url->previous() . '#footer_form';
+	}
 }

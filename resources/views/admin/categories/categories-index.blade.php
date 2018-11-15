@@ -50,6 +50,21 @@
                                                 {!! Form::file('photo', ($errors->has('photo') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
                                                 <span class="text-danger">{{ $errors->first('photo') }}</span>
                                             </div>
+                                            <div class="form-group">
+                                                {!! Form::label('titleSEO', 'SEO заголовок:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                                                {!! Form::text('titleSEO', old('titleSEO'), ['placeholder'=>'SEO заголовок'] + ($errors->has('titleSEO') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                                                <span class="text-danger">{{ $errors->first('titleSEO') }}</span>
+                                            </div>
+                                            <div class="form-group">
+                                                {!! Form::label('descriptionSEO', 'Мета описанння:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                                                {!! Form::textarea('descriptionSEO', old('descriptionSEO'), ['placeholder'=>'Мета описання'] + ($errors->has('descriptionSEO') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                                                <span class="text-danger">{{ $errors->first('descriptionSEO') }}</span>
+                                            </div>
+                                            <div class="form-group">
+                                                {!! Form::label('keywordsSEO', 'Ключові слова:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                                                {!! Form::text('keywordsSEO', old('keywordsSEO'), ['placeholder'=>'Ключові слова'] + ($errors->has('keywordsSEO') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                                                <span class="text-danger">{{ $errors->first('keywordsSEO') }}</span>
+                                            </div>
                                             {!! Form::submit('Додати', ['class'=>'btn btn-success w-100 text-uppercase font-weight-bold']) !!}
                                         {!! Form::close() !!}
                                     </div>

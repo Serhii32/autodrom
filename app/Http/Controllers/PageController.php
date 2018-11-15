@@ -8,7 +8,7 @@ use App\Feedback;
 use App\Article;
 use App\Blog;
 use App\Category;
-use Mapper;
+use App\ProAction;
 
 class PageController extends Controller
 {
@@ -18,7 +18,6 @@ class PageController extends Controller
     private $blogCategories;
     private $blogTitlesCategories;
     private $blogItems;
-    private $map;
 
     public function __construct()
     {
@@ -31,36 +30,53 @@ class PageController extends Controller
             return $blogTitleCategory->only(['id','title']);
         });
         $this->blogItems = Blog::orderBy('created_at', 'desc')->take(5)->get();
-        $this->map = Mapper::map(49.233185, 28.407826, ['zoom' => 10, 'center' => false]);
     }
 
-    public function index() 
+    public function index()
     {
-        $feedbackItems = Feedback::all();
-    	return view('index-page', compact('feedbackItems'), ['serviceItems' => $this->serviceItems, 'serviceTitles' => $this->serviceTitles, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+        $feedbackItems = Feedback::orderBy('created_at', 'desc')->get();
+        $pageTitle = 'Чип-тюнинг двигателя | Главная';
+        $pageDescription = 'Чип тюнинг автомобиля';
+        $frontServiceItems = Service::orderBy('created_at', 'desc')->get()->take(6);
+        $actionItems = ProAction::orderBy('created_at', 'desc')->get()->take(6);
+        $blogItems = Blog::orderBy('created_at', 'desc')->get()->take(6);
+    	return view('index-page', compact('feedbackItems', 'actionItems', 'blogItems', 'frontServiceItems', 'pageTitle', 'pageDescription'), ['serviceItems' => $this->serviceItems, 'serviceTitles' => $this->serviceTitles, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
-    public function blog() 
+    public function blog()
     {
         $identificator = 'blog';
+        $pageTitle = 'Чип-тюнинг двигателя | Новости';
+        $pageDescription = 'Новые события и акции компании Чип-тюнинг. Увеличение мощности двигателя с гарантией, качественно в виннице';
+        $pageKeywords = 'новости, акции, события, чип-тюнинг, увеличение мощности, тюнинг двигателя, Винница, Bosch сервис';
         $items = Blog::paginate(6);
-    	return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+    	return view('items-page', compact(['items', 'identificator', 'pageTitle', 'pageDescription', 'pageKeywords']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
-    public function service() 
+    public function service()
     {
         $identificator = 'service';
         $items = Service::paginate(6);
         return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
-    public function article() 
+    public function proAction()
     {
-        $identificator = 'article';
-        $items = Article::paginate(6);
+        $identificator = 'pro-action';
+        $items = ProAction::paginate(6);
         return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
-    
+
+    public function article()
+    {
+        $identificator = 'article';
+        $pageTitle = 'Чип-тюнинг двигателя | Cтатьи';
+        $pageDescription = 'Статьи - полезная и интересная информация по увеличению мощности двигателя';
+        $pageKeywords = 'chiptuning, статьи, увеличить мощность двигателя, винница, бош сервис';
+        $items = Article::paginate(6);
+        return view('items-page', compact(['items', 'identificator', 'pageTitle', 'pageDescription', 'pageKeywords']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+    }
+
     public function feedback()
     {
         $identificator = 'feedback';
@@ -68,41 +84,68 @@ class PageController extends Controller
         return view('items-page', compact(['items', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
-    public function category_item(int $id) 
+    public function category_item(int $id)
     {
         $identificator = 'blog';
         $category = Category::findOrFail($id);
+        $pageTitle = $category->titleSEO;
+        $pageDescription = $category->descriptionSEO;
+        $pageKeywords = $category->keywordsSEO;
         $items = $category->blog()->paginate(6);
         $childs = $category->childs()->get();
-        return view('items-page', compact(['items', 'childs', 'identificator']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+        return view('items-page', compact(['items', 'childs', 'identificator', 'pageTitle', 'pageDescription', 'pageKeywords']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
-    public function blog_item(int $id) 
+    public function blog_item(int $id)
     {
         $item = Blog::findOrFail($id);
-        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+        $pageTitle = $item->titleSEO;
+        $pageDescription = $item->descriptionSEO;
+        $pageKeywords = $item->keywordsSEO;
+        return view('item-page', compact(['item', 'pageTitle', 'pageDescription', 'pageKeywords']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
-    public function service_item(int $id) 
+    public function service_item(int $id)
     {
         $item = Service::findOrFail($id);
-        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+        $pageTitle = $item->titleSEO;
+        $pageDescription = $item->descriptionSEO;
+        $pageKeywords = $item->keywordsSEO;
+        return view('item-page', compact(['item', 'pageTitle', 'pageDescription', 'pageKeywords']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
-    public function article_item(int $id) 
+    public function proAction_item(int $id)
+    {
+        $item = ProAction::findOrFail($id);
+        $pageTitle = $item->titleSEO;
+        $pageDescription = $item->descriptionSEO;
+        $pageKeywords = $item->keywordsSEO;
+        return view('item-page', compact(['item', 'pageTitle', 'pageDescription', 'pageKeywords']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+    }
+
+    public function article_item(int $id)
     {
         $item = Article::findOrFail($id);
-        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+        $pageTitle = $item->titleSEO;
+        $pageDescription = $item->descriptionSEO;
+        $pageKeywords = $item->keywordsSEO;
+        return view('item-page', compact(['item', 'pageTitle', 'pageDescription', 'pageKeywords']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
-    public function feedback_item(int $id) 
+    public function feedback_item(int $id)
     {
         $item = Feedback::findOrFail($id);
-        return view('item-page', compact(['item']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+        $pageTitle = $item->titleSEO;
+        $pageDescription = $item->descriptionSEO;
+        $pageKeywords = $item->keywordsSEO;
+        return view('item-page', compact(['item', 'pageTitle', 'pageDescription', 'pageKeywords']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 
-    public function contacts() 
+    public function contacts()
     {
-    	return view('contacts-page', ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
+        $pageTitle = 'Чип-тюнинг двигателя | Контакты';
+        $pageDescription = 'Контактная информация Чип-тюнинг от автодром, Bosch сервис';
+        $pageKeywords = 'Контакты, адрес, телефон, Bosch сервис, Винница, чип-тюнинг';
+    	return view('contacts-page', compact(['pageTitle', 'pageDescription', 'pageKeywords']), ['serviceTitles' => $this->serviceTitles, 'blogItems' => $this->blogItems, 'blogTitlesCategories' => $this->blogTitlesCategories]);
     }
 }

@@ -40,6 +40,21 @@
                                         {!! Form::textarea('short_description', $item->short_description, ['placeholder' => 'Короткий опис'] + ($errors->has('short_description') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
                                         <span class="text-danger">{{ $errors->first('short_description') }}</span>
                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('titleSEO', 'SEO заголовок:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                                        {!! Form::text('titleSEO', $item->titleSEO, ['placeholder'=>'SEO заголовок'] + ($errors->has('titleSEO') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                                        <span class="text-danger">{{ $errors->first('titleSEO') }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::label('descriptionSEO', 'Мета описання:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                                        {!! Form::textarea('descriptionSEO', $item->descriptionSEO, ['placeholder'=>'Мета описання'] + ($errors->has('descriptionSEO') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                                        <span class="text-danger">{{ $errors->first('descriptionSEO') }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::label('keywordsSEO', 'Ключові слова:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                                        {!! Form::text('keywordsSEO', $item->keywordsSEO, ['placeholder'=>'Ключові слова'] + ($errors->has('keywordsSEO') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                                        <span class="text-danger">{{ $errors->first('keywordsSEO') }}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

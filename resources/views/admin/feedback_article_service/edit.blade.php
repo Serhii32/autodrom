@@ -19,14 +19,14 @@
                                 <div class="col-12 col-md-6">
                                     <img class="img-thumbnail img-fluid" src="{{$item->main_photo ? asset($item->main_photo) : asset('img/site/common/default.png')}}" alt="{{ $item->title }}">
                                     <div class="form-group">
-                                        {!! Form::label('main_photo', ($identificator=='feedback')?'Вибрати головне фото відгуку:':(($identificator=='article')?'Вибрати головне фото статті:':'Вибрати головне фото послуги:'), ['class' => 'text-uppercase font-weight-bold']) !!}
+                                        {!! Form::label('main_photo', ($identificator=='feedback')?'Вибрати головне фото відгуку:':(($identificator=='article')?'Вибрати головне фото статті:':(($identificator=='pro-action')?'Вибрати головне фото акції:':'Вибрати головне фото послуги:')), ['class' => 'text-uppercase font-weight-bold']) !!}
                                         {!! Form::file('main_photo', ($errors->has('main_photo') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
                                         <span class="text-danger">{{ $errors->first('main_photo') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        {!! Form::label('title', ($identificator=='feedback')?'Назва відгуку:':(($identificator=='article')?'Назва статті:':'Назва послуги:'), ['class' => 'text-uppercase font-weight-bold']) !!}
+                                        {!! Form::label('title', ($identificator=='feedback')?'Назва відгуку:':(($identificator=='article')?'Назва статті:':(($identificator=='pro-action')?'Назва акції:':'Назва послуги:')), ['class' => 'text-uppercase font-weight-bold']) !!}
                                         {!! Form::text('title', $item->title, ['placeholder'=>($identificator=='feedback')?'Назва відгуку':(($identificator=='article')?'Назва статті':'Назва послуги')] + ($errors->has('title') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
                                         <span class="text-danger">{{ $errors->first('title') }}</span>
                                     </div>
@@ -34,6 +34,21 @@
                                         {!! Form::label('short_description', 'Короткий опис:', ['class' => 'text-uppercase font-weight-bold']) !!}
                                         {!! Form::textarea('short_description', $item->short_description, ['placeholder' => 'Короткий опис'] + ($errors->has('short_description') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
                                         <span class="text-danger">{{ $errors->first('short_description') }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::label('titleSEO', 'SEO заголовок:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                                        {!! Form::text('titleSEO', $item->titleSEO, ['placeholder'=>'SEO заголовок'] + ($errors->has('titleSEO') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                                        <span class="text-danger">{{ $errors->first('titleSEO') }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::label('descriptionSEO', 'Мета описання:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                                        {!! Form::textarea('descriptionSEO', $item->descriptionSEO, ['placeholder'=>'Мета описання'] + ($errors->has('descriptionSEO') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                                        <span class="text-danger">{{ $errors->first('descriptionSEO') }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::label('keywordsSEO', 'Ключові слова:', ['class' => 'text-uppercase font-weight-bold']) !!}
+                                        {!! Form::text('keywordsSEO', $item->keywordsSEO, ['placeholder'=>'Ключові слова'] + ($errors->has('keywordsSEO') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
+                                        <span class="text-danger">{{ $errors->first('keywordsSEO') }}</span>
                                     </div>
                                 </div>
                             </div>

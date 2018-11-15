@@ -47,6 +47,9 @@ class BlogController extends Controller
         $item->description = $request->description;
         $item->short_description = $request->short_description;
         $item->category_id = $request->category;
+        $item->titleSEO = $request->titleSEO;
+        $item->descriptionSEO = $request->descriptionSEO;
+        $item->keywordsSEO = $request->keywordsSEO;
         $item->save();
         $last_insereted_id = $item->id;
         if ($request->main_photo != null) {
@@ -95,6 +98,9 @@ class BlogController extends Controller
         $item->description = $request->description;
         $item->short_description = $request->short_description;
         $item->category_id = $request->category;
+        $item->titleSEO = $request->titleSEO;
+        $item->descriptionSEO = $request->descriptionSEO;
+        $item->keywordsSEO = $request->keywordsSEO;
         $item->save();
         $last_insereted_id = $item->id;
 

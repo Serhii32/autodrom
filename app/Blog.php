@@ -9,7 +9,7 @@ class Blog extends Model
     protected $table = 'blog';
 
     protected $fillable = [
-        'title', 'main_photo', 'short_description', 'description', 'category_id'
+        'title', 'main_photo', 'short_description', 'description', 'category_id', 'titleSEO', 'descriptionSEO', 'keywordsSEO'
     ];
 
     public function category()

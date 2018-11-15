@@ -6,13 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Requests\FooterFormMailRequest;
 use App\Mail\FooterFormMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class MailController extends Controller
 {
     public function send(FooterFormMailRequest $data)
     {
-    	Mail::to("serhii.bondarenko.ria@gmail.com")->send(new FooterFormMail($data));
+    	Mail::to("chiptuning.vin@gmail.com")->send(new FooterFormMail($data));
 
-    	return redirect()->route('page.index')->with(['mailmessage' => 'Заявка успешно отправлена']);
+    	/*$message = "Нова заявка з сайту Автодром<br>
+        Ім'я: " . $data->name . "<br>
+        Телефон: " . $data->tel;
+        $headers = "Content-type:text/html;charset=UTF-8" . "\r\n" . "From: admin@chiptuning.com" . "\r\n";
+        mail("serhii.bondarenko.ria@gmail.com","Нова заявка з сайту Автодром",$message, $headers);*/
+		return Redirect::to(URL::previous() . "#footer_form")->with(['mailmessage' => 'Заявка успешно отправлена']);
+    	//return redirect()->back()->with(['mailmessage' => 'Заявка успешно отправлена']);
     }
 }

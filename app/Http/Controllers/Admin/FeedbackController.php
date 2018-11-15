@@ -50,6 +50,9 @@ class FeedbackController extends Controller
         $item->title = $request->title;
         $item->description = $request->description;
         $item->short_description = $request->short_description;
+        $item->titleSEO = $request->titleSEO;
+        $item->descriptionSEO = $request->descriptionSEO;
+        $item->keywordsSEO = $request->keywordsSEO;
         $item->save();
         $last_insereted_id = $item->id;
         if ($request->main_photo != null) {
@@ -96,6 +99,9 @@ class FeedbackController extends Controller
         $item->title = $request->title;
         $item->description = $request->description;
         $item->short_description = $request->short_description;
+        $item->titleSEO = $request->titleSEO;
+        $item->descriptionSEO = $request->descriptionSEO;
+        $item->keywordsSEO = $request->keywordsSEO;
         $item->save();
         $last_insereted_id = $item->id;
 
@@ -123,6 +129,6 @@ class FeedbackController extends Controller
         Storage::disk('local')->deleteDirectory('img/site/feedback/' . $id);
         $item = Feedback::findOrFail($id);
         $item->delete();
-        return redirect()->route('admin/article.index')->with(['message' => 'Відгук успішно видалений']);
+        return redirect()->route('admin/feedback.index')->with(['message' => 'Відгук успішно видалений']);
     }
 }

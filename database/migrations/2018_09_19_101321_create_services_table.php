@@ -19,6 +19,9 @@ class CreateServicesTable extends Migration
             $table->string('main_photo')->nullable();
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
+            $table->string('titleSEO')->nullable();
+            $table->text('descriptionSEO')->nullable();
+            $table->string('keywordsSEO')->nullable();
             $table->timestamps();
         });
     }

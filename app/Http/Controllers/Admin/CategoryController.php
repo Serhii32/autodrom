@@ -36,6 +36,9 @@ class CategoryController extends Controller
         $category = new Category;
         $category->title = $request->title;
         $category->parent_id = $request->parent_id ?: 0;
+        $category->titleSEO = $request->titleSEO;
+        $category->descriptionSEO = $request->descriptionSEO;
+        $category->keywordsSEO = $request->keywordsSEO;
         $category->save();
         $last_insereted_id = $category->id;
         if ($request->photo != null) {
@@ -74,6 +77,9 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->title = $request->title;
         $category->parent_id = $request->parent_id ?: 0;
+        $category->titleSEO = $request->titleSEO;
+        $category->descriptionSEO = $request->descriptionSEO;
+        $category->keywordsSEO = $request->keywordsSEO;
         $category->save();
         $last_insereted_id = $category->id;
         if ($request->photo != null) {

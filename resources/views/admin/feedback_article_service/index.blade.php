@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <h3 class="card-header text-center text-uppercase">@if($identificator == 'feedback') Відгуки @elseif($identificator == 'article') Статті @else Послуги @endif</h3>
+                <h3 class="card-header text-center text-uppercase">@if($identificator == 'feedback') Відгуки @elseif($identificator == 'pro-action') Акції @elseif($identificator == 'article') Статті @else Послуги @endif</h3>
 
                 <div class="card-body">
                     @if(session('message'))
@@ -37,7 +37,7 @@
                         </div>
                         <div class="text-center">{{$items->links()}}</div>
                     @else
-                        <h4 class="text-center">@if($identificator == 'feedback') Відгуки @elseif($identificator == 'article') Статті @else Послуги @endif відсутні</h4>
+                        <h4 class="text-center">@if($identificator == 'feedback') Відгуки @elseif($identificator == 'article') Статті @elseif($identificator == 'pro-action') Акції @else Послуги @endif відсутні</h4>
                     @endif
                 </div>
             </div>

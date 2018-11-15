@@ -30,6 +30,6 @@ class FooterFormMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Нова заявка з сайту Автодром')->text('mail.footer_form');
+        return $this->subject('Нова заявка з сайту Автодром')->from('admin@chiptuning.com', 'ChipTuning')->text('mail.footer_form');
     }
 }

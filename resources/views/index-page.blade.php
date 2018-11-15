@@ -19,43 +19,19 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-12 col-lg-4">
-								@if(count($actionItems))
-									<div class="container">
-										<div class="row justify-content-center">
-											<h3 class="text-center mt-4">Акции</h3>
-											@foreach($actionItems as $actionItem)
-												<div class="col-12 mb-2">
-													<a style="display: block;" href="{{route('page.pro-action.item', $actionItem->id)}}">
-														<div class="rounded row" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2);">
-															<div class="col-12 text-center">
-																<img class="p-3" style="height: 150px; width: auto; object-fit: contain;" src="{{ $actionItem->main_photo ? asset($actionItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$actionItem->title}}">
-															</div>
-											  				<div class="text-center col-12 p-4">
-											    				<h5 class="card-title"><strong>{{$actionItem->title}}</strong></h5>
-											    				<p class="card-text p-2" style="font-size: 12px;">{{$actionItem->short_description}}</p>
-											  				</div>
-														</div>
-													</a>
-												</div>
-											@endforeach
-										</div>
-									</div>
-								@endif
-							</div>
-							<div class="col-12 col-lg-4">
+							<div class="col-12 col-lg-8">
 								@if(count($frontServiceItems))
 									<div class="container">
 										<div class="row justify-content-center">
-											<h3 class="text-center mt-4">Услуги</h3>
+											<h3 class="text-center my-4">Услуги</h3>
 											@foreach($frontServiceItems as $frontServiceItem)
 												<div class="col-12 mb-2">
 													<a style="display: block;" href="{{route('page.service.item', $frontServiceItem->id)}}">
 														<div class="rounded row" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2);">
-															<div class="col-12 text-center">
-																<img class="p-3" style="height: 150px; width: auto; object-fit: contain;" src="{{ $frontServiceItem->main_photo ? asset($frontServiceItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$frontServiceItem->title}}">
+															<div class="col-12 col-lg-4 text-center">
+																<img class="p-3" style="width: 100%; object-fit: contain;" src="{{ $frontServiceItem->main_photo ? asset($frontServiceItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$frontServiceItem->title}}">
 															</div>
-											  				<div class="text-center col-12 p-4">
+											  				<div class="text-center col-12 col-lg-8 p-4">
 											    				<h5 class="card-title"><strong>{{$frontServiceItem->title}}</strong></h5>
 											    				<p class="card-text p-2" style="font-size: 12px;">{{$frontServiceItem->short_description}}</p>
 											  				</div>
@@ -68,7 +44,46 @@
 								@endif
 							</div>
 							<div class="col-12 col-lg-4">
-								@if(count($blogItems))
+								@if(count($actionItems))
+									<div class="container">
+										<div class="row justify-content-center">
+											<h3 class="text-center my-4">Акции</h3>
+											@foreach($actionItems as $actionItem)
+												<div class="col-12 mb-2">
+													<a style="display: block; background: #e9eef1;" href="{{route('page.pro-action.item', $actionItem->id)}}">
+														<div class="rounded row" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2);">
+															<div class="col-12 text-center">
+																<img class="p-3" style="height: 150px; width: auto; object-fit: contain;" src="{{ $actionItem->main_photo ? asset($actionItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$actionItem->title}}">
+															</div>
+											  				<div class="text-center col-12 p-4">
+											    				<h5 class="card-title"><strong>{{$actionItem->title}}</strong></h5>
+											    				<p class="card-text p-2" style="font-size: 12px;">{{$actionItem->short_description}}</p>
+											  				</div>
+											  				<a href="{{route('page.pro-action')}}" class="btn w-100" style="cursor: pointer;">УЗНАТЬ БОЛЬШЕ</a>
+														</div>
+													</a>
+												</div>
+											@endforeach
+										</div>
+									</div>
+								@endif
+								<div class="sidebar-area">
+									<div class="sidebar-section latest-post-area">
+										<h3 class="text-center my-4">Последние новости</h3>
+										{{-- <h4 class="title"><b class="light-color"></b></h4> --}}
+										@foreach($blogItems as $blogItem)
+											<div class="latest-post">
+												<div class="l-post-image"><img src="{{ $blogItem->main_photo ? asset($blogItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$blogItem->title}}"></div>
+												<div class="post-info">
+													@if($blogItem->category()->first())<a class="btn category-btn" href="{{route('page.category.item', $blogItem->category()->first()->id)}}">{{$blogItem->category()->first()->title}}</a>@endif
+													<h5><a href="{{route('page.blog.item', $blogItem->id)}}"><b class="light-color">{{$blogItem->title}}</b></a></h5>
+													<h6 class="date"><em>{{$blogItem->created_at}}</em></h6>
+												</div>
+											</div>
+										@endforeach
+									</div>
+								</div>
+								{{-- @if(count($blogItems))
 									<div class="container">
 										<div class="row justify-content-center">
 											<h3 class="text-center mt-4">Новости</h3>
@@ -89,7 +104,7 @@
 											@endforeach
 										</div>
 									</div>
-								@endif
+								@endif --}}
 							</div>
 						</div>
 

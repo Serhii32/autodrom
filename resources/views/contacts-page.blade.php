@@ -14,7 +14,7 @@
 							<p class="desc" style="font-size: 1.3em;">
 								Адрес: улица Воинов-Интернационалистов 2б, Винница, Винницкая область, 21029<br><br>
 
-								Телефоны: <a href="tel:+380432558080">(0432)55-80-80</a> &nbsp; <a href="tel:+380960788080">(096)078-80-80</a> &nbsp; <a href="tel:+380930788080">(093)078-80-80</a>
+								Телефоны: <a onclick="gtag('event','Click',{'event_category':'0930788080','event_label':'Contacts',})" href="tel:+380432558080">(0432)55-80-80</a> &nbsp; <a onclick="gtag('event','Click',{'event_category':'0960788080','event_label':'Contacts',})" href="tel:+380960788080">(096)078-80-80</a> &nbsp; <a onclick="gtag('event','Click',{'event_category':'0432558080','event_label':'Contacts',})" href="tel:+380930788080">(093)078-80-80</a>
 							</p>
 							<br>
 							<h3 class="title text-center"><b class="light-color">График работы</b></h3>

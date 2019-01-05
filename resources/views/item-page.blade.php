@@ -2,7 +2,7 @@
 
 @section('content')
 	<section class="blog-area empty-space">
-		<div class="container">
+		<div class="container" style="padding-top: 50px;">
 			<div class="row">
 
 				<div class="col-lg-8 col-md-12">
@@ -10,7 +10,7 @@
 
 						<div class="single-post">
 
-							@if(method_exists($item, 'category'))
+							@if(method_exists($item, 'category') && null !== $item->category()->first())
 
 								<div class="icons">
 									<div class="left-area">

@@ -1,7 +1,7 @@
 <div class="col-lg-4 col-md-12">
 	<div class="sidebar-area">
 
-		<div class="sidebar-section latest-post-area">
+		<div class="sidebar-section latest-post-area" style="padding-top: 20px;">
 			<h4 class="title"><b class="light-color">Последние новости</b></h4>
 			@foreach($blogItems as $blogItem)
 				<div class="latest-post">

@@ -29,7 +29,7 @@
 													<a style="display: block;" href="{{route('page.service.item', $frontServiceItem->id)}}">
 														<div class="rounded row" style="box-shadow: 0px 10px 40px rgba(0,0,0,.2);">
 															<div class="col-12 col-lg-4 text-center">
-																<img class="p-3" style="width: 100%; object-fit: contain;" src="{{ $frontServiceItem->main_photo ? asset($frontServiceItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$frontServiceItem->title}}">
+																<img class="p-3" style="height: 150px; width: auto; object-fit: contain;" src="{{ $frontServiceItem->main_photo ? asset($frontServiceItem->main_photo) : asset('img/site/common/default.png') }}" alt="{{$frontServiceItem->title}}">
 															</div>
 											  				<div class="text-center col-12 col-lg-8 p-4">
 											    				<h5 class="card-title"><strong>{{$frontServiceItem->title}}</strong></h5>
@@ -181,7 +181,7 @@
 								}
 							</style>
 							<h3 class="text-center m-3">Наши работы</h3>
-							<div class="main-carousel" data-flickity='{ "imagesLoaded": true, "percentPosition": false, "autoPlay": 2000, "groupCells": true }'>
+							<div class="main-carousel" data-flickity='{ "imagesLoaded": true, "percentPosition": false, "autoPlay": 2000, "groupCells": 5 }'>
 							@foreach($feedbackItems as $feedbackItem)
 							  <div class="carousel-cell" style="background: transparent; width: 40%;">
 							  	<a href="{{route('page.feedback.item', $feedbackItem->id)}}">

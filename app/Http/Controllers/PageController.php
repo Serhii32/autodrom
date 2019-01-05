@@ -37,7 +37,7 @@ class PageController extends Controller
         $feedbackItems = Feedback::orderBy('created_at', 'desc')->get();
         $pageTitle = 'Чип-тюнинг двигателя | Главная';
         $pageDescription = 'Чип тюнинг автомобиля';
-        $frontServiceItems = Service::orderBy('created_at', 'desc')->get()->take(6);
+        $frontServiceItems = Service::orderBy('created_at')->get()->take(6);
         $actionItems = ProAction::orderBy('created_at', 'desc')->get()->take(1);
         $blogItems = Blog::orderBy('created_at', 'desc')->get()->take(6);
     	return view('index-page', compact('feedbackItems', 'actionItems', 'blogItems', 'frontServiceItems', 'pageTitle', 'pageDescription'), ['serviceItems' => $this->serviceItems, 'serviceTitles' => $this->serviceTitles, 'blogTitlesCategories' => $this->blogTitlesCategories]);

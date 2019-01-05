@@ -26,6 +26,7 @@ class FooterFormMailRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'tel' => 'required|numeric',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 	

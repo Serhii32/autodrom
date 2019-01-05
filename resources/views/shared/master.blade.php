@@ -30,8 +30,7 @@
 	<link href="{{asset('01-homepage/css/responsive.css')}}" rel="stylesheet">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async
-	src="https://www.googletagmanager.com/gtag/js?id=UA-127047740-1"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js"></script>
 	<script>
 	   window.dataLayer = window.dataLayer || [];
 	   function gtag(){dataLayer.push(arguments);}
@@ -39,7 +38,7 @@
 
 	   gtag('config', 'UA-127047740-1');
 	</script>
-
+	<script defer src="{{asset('js/google-analytics.js')}}"></script>
 	@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
 		<script>
 		$(function() {
@@ -126,9 +125,9 @@
 				@endif
 				<li><a href="{{route('page.pro-action')}}">АКЦИИ</a></li>
 				<li><a href="{{route('page.contacts')}}">КОНТАКТЫ</a></li>
-				<li id="menu-number-1" style="float: right;"><a style="padding: 0 5px; font-size: 17px;" href="tel:+380432558080">(0432)55-80-80</a></li>
-				<li id="menu-number-2" style="float: right;"><a style="padding: 0 5px; font-size: 17px;" href="tel:+380960788080">(096)078-80-80</a></li>
-				<li id="menu-number-3" style="float: right;"><a style="padding: 0 5px; font-size: 17px;" href="tel:+380930788080">(093)078-80-80</a></li>
+				<li id="menu-number-1" style="float: right;"><a style="padding: 0 5px; font-size: 17px;" onclick="gtag('event','Click',{'event_category':'0432558080','event_label':'Header',})" href="tel:+380432558080">(0432)55-80-80</a></li>
+				<li id="menu-number-2" style="float: right;"><a style="padding: 0 5px; font-size: 17px;" onclick="gtag('event','Click',{'event_category':'0960788080','event_label':'Header',})" href="tel:+380960788080">(096)078-80-80</a></li>
+				<li id="menu-number-3" style="float: right;"><a style="padding: 0 5px; font-size: 17px;" onclick="gtag('event','Click',{'event_category':'0930788080','event_label':'Header',})" href="tel:+380930788080">(093)078-80-80</a></li>
 
 			</ul><!-- main-menu -->
 
@@ -156,7 +155,7 @@
 							</div>
 						@else
 							<h4 class="text-center">ОСТАВИТЬ ЗАЯВКУ</h4>
-							{!! Form::open(['route'=>'mail.send']) !!}
+							{!! Form::open(['route'=>'mail.send', 'id'=>'footer-form']) !!}
 								<div class="form-group">
 		                            {!! Form::label('name', 'Имя:', ['class' => 'text-uppercase font-weight-bold']) !!}
 		                            {!! Form::text('name', old('name'), ['placeholder'=>'Имя'] + ($errors->has('name') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
@@ -167,13 +166,18 @@
 		                            {!! Form::number('tel', old('tel'), ['placeholder'=>'Телефон'] + ($errors->has('tel') ? ['class'=>'form-control is-invalid'] : ['class'=>'form-control'])) !!}
 		                            <span class="text-danger">{{ $errors->first('tel') }}</span>
 		                        </div>
+		                        <div class="form-group">
+		                        	{!! NoCaptcha::renderJs() !!}
+		                        	{!! NoCaptcha::display() !!}
+		                        	<span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+		                        </div>
 								<div class="form-group">
 		                            {!! Form::submit('Отправить', ['class'=>'btn btn-success w-100 text-uppercase font-weight-bold', 'style'=>'cursor:pointer']) !!}
 		                        </div>
 		                    {!! Form::close() !!}
 	                    @endif
 	                    <p class="copyright p-2">Адрес: улица Воинов-Интернационалистов 2б, Винница, Винницкая область, 21029</p>
-	                    <p class="copyright p-2">Телефоны: <a href="tel:+380432558080">(0432)55-80-80</a> &nbsp; <a href="tel:+380960788080">(096)078-80-80</a> &nbsp; <a href="tel:+380930788080">(093)078-80-80</a></p>
+	                    <p class="copyright p-2">Телефоны: <a onclick="gtag('event','Click',{'event_category':'0432558080','event_label':'Footer',})" href="tel:+380432558080">(0432)55-80-80</a> &nbsp; <a onclick="gtag('event','Click',{'event_category':'0960788080','event_label':'Footer',})" href="tel:+380960788080">(096)078-80-80</a> &nbsp; <a onclick="gtag('event','Click',{'event_category':'0930788080','event_label':'Footer',})" href="tel:+380930788080">(093)078-80-80</a></p>
 
 
 				</div><!-- col-lg-4 col-md-6 -->
